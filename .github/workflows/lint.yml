@@ -17,10 +17,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
       
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Run ESLint
-        run: npm run lint
+      - name: Install and lint client
+        run: |
+          if [ -d client ]; then
+            echo "Running lint in client/"
+            cd client
+            npm ci
+            npm run lint
+          else
+            echo "No client folder — skipping client lint"
+          fi
+
+      - name: Install and lint server
+        run: |
+          if [ -d server ]; then
+            echo "Running lint in server/"
+            cd server
+            npm ci
+            npm run lint
+          else
+            echo "No server folder — skipping server lint"
+          fi
