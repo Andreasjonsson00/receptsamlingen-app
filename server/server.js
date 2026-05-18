@@ -14,7 +14,8 @@ const pool=new Pool({
    password:process.env.DB_PASSWORD,
    ssl: { rejectUnauthorized: false }    
 });
-console.log(pool)
+const result=pool.query.get('SELECT*FROM recipes;')
+console.log(result)
 
 app.get("/", (req, res) => {
   res.json({ message: "API is running" });
