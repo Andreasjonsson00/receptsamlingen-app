@@ -38,8 +38,9 @@
 ## Kvalitétstest
 ### ESLint + minst 1 reviewer innan Merge 
 
-## Instruktioner
-### npm install
+## Instruktioner (Bash)
+### cd client > npm install > npm run dev
+### cd server > npm install > npm run dev
 
 ## Ansvarsområden
 ### Julia:
