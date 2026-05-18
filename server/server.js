@@ -14,7 +14,7 @@ const pool=new Pool({
    password:process.env.DB_PASSWORD,
    ssl: { rejectUnauthorized: false }    
 });
-
+console.log(pool)
 
 app.get("/", (req, res) => {
   res.json({ message: "API is running" });
