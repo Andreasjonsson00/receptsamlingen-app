@@ -33,7 +33,7 @@
 #### - ...
 
 ## Packages
-### Vite, Axios, React-router-dom, lint
+        ### Vite, Axios, React-router-dom, lint, nodemon, express
 
 ## Kvalitétstest
 ### ESLint + minst 1 reviewer innan Merge 
