@@ -71,6 +71,25 @@
   font-size: 0.875rem;
 }
 
+.search-bar__input {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: inherit;
+}
+
+.search-bar__input:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.search-bar__input::placeholder {
+  color: var(--color-text-muted);
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -172,4 +191,20 @@
 
 .favourite-button--active {
   animation: favourite-pop 0.3s ease;
+}
+
+.error-message {
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-md);
+  color: var(--color-danger);
+}
+
+.empty-message {
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-family: var(--font-heading);
 }
