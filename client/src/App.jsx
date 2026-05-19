@@ -1,4 +1,4 @@
-import "./App.css";
+{/*import "./App.css";
 import { useState } from "react";
 import FavoritesPage from "./pages/FavoritesPage";
 
@@ -26,4 +26,23 @@ function App() {
   );
 }
 
-export default App;
+export default App;*/}
+import { BrowserRouter ,Routes,Route} from "react-router-dom";
+import RecipeListPage from "./pages/RecipeListPage";
+
+function App() {
+  return (
+    <div>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/recipes' element={<RecipeListPage />}/>
+        </Routes>
+       
+      </BrowserRouter>
+     
+      
+    </div>
+  )
+}
+
+export default App
