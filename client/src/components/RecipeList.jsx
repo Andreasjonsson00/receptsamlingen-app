@@ -2,7 +2,7 @@ import { getAll } from "../../api/recipeApi"
 import { useState,useEffect } from "react"
 import Recipe from "./Recipe"
 
-const RecipeList = ({ addFavorite }) => {
+const RecipeList = ({ favorites = [], toggleFavorite }) => {
     const[recipes,setRecipes]=useState([])
     const[error,setError]=useState(null)
   
@@ -28,7 +28,12 @@ const RecipeList = ({ addFavorite }) => {
     
       <ul>
         {recipes.map((recipe) => (
-          <Recipe key={recipe.id} recipe={recipe} addFavorite={addFavorite} />
+          <Recipe
+            key={recipe.id}
+            recipe={recipe}
+            isFavorite={favorites.some((favorite) => favorite.id === recipe.id)}
+            toggleFavorite={toggleFavorite}
+          />
         ))}
       </ul>
     </div>

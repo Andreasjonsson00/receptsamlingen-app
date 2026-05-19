@@ -7,24 +7,42 @@ import FavoritesPage from "./pages/FavoritesPage";
 function App() {
   const [favorites, setFavorites] = useState([]); // State to hold the list of favorite recipes objects. (all pages will have access to this state)
 
-  const addFavorite = (recipe) => {
-    setFavorites([...favorites, recipe]);
-    console.log("Added to favorites:", favorites);
+  const toggleFavorite = (recipe) => {
+    setFavorites((currentFavorites) => {
+      const isFavorite = currentFavorites.some(
+        (favorite) => favorite.id === recipe.id,
+      );
+      
+      if (isFavorite) {
+        return currentFavorites.filter((favorite) => favorite.id !== recipe.id);
+      }
+      
+      return [...currentFavorites, recipe];
+    });
   };
 
+  console.log("Current favorites:", favorites);
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route
             path="/recipes"
-            element={<RecipeListPage addFavorite={addFavorite} />}
+            element={
+              <RecipeListPage
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            }
           />
           <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
           <Route
             path="/favorites"
             element={
-              <FavoritesPage favorites={favorites} addFavorite={addFavorite} />
+              <FavoritesPage
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
             }
           />
         </Routes>
