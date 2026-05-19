@@ -1,10 +1,10 @@
-import RecipeList from "../components/RecipeList-2";
+import RecipeList from "../components/RecipeList";
 
 
-const RecipeListPage = () => {
+const RecipeListPage = ({ addFavorite }) => {
   return (
     <div>
-        <RecipeList />
+        <RecipeList addFavorite={addFavorite} />
       
     </div>
   )

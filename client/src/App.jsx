@@ -1,49 +1,36 @@
-{/*import "./App.css";
 import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RecipeListPage from "./pages/RecipeListPage";
+import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import FavoritesPage from "./pages/FavoritesPage";
 
 function App() {
-  const [favorites] = useState([ // State to hold the list of favorite recipes objects. (all pages will have access to this state)
-    {
-      id: 1,
-      title: "Pasta Primavera", // Mock data for favorite recipes
-      category: "Vegetariskt",
-      image: "pasta.jpg",
-    },
+  const [favorites, setFavorites] = useState([]); // State to hold the list of favorite recipes objects. (all pages will have access to this state)
 
-    {
-      id: 2,
-      title: "Chokladkaka",
-      category: "Dessert",
-      image: "cake.jpg",
-    },
-  ]);
+  const addFavorite = (recipe) => {
+    setFavorites([...favorites, recipe]);
+    console.log("Added to favorites:", favorites);
+  };
 
-  return (
-    <>
-      <FavoritesPage favorites={favorites} />
-    </>
-  );
-}
-
-export default App;*/}
-import { BrowserRouter ,Routes,Route} from "react-router-dom";
-import RecipeListPage from "./pages/RecipeListPage";
-import RecipeDetailsPage from "./pages/RecipeDetailsPage";
-function App() {
   return (
     <div>
       <BrowserRouter>
-      <Routes>
-        <Route path='/recipes' element={<RecipeListPage />}/>
-        <Route path='/recipes/:id' element={<RecipeDetailsPage />}/>
+        <Routes>
+          <Route
+            path="/recipes"
+            element={<RecipeListPage addFavorite={addFavorite} />}
+          />
+          <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
+          <Route
+            path="/favorites"
+            element={
+              <FavoritesPage favorites={favorites} addFavorite={addFavorite} />
+            }
+          />
         </Routes>
-       
       </BrowserRouter>
-     
-      
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
