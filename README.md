@@ -33,7 +33,7 @@
 #### - ...
 
 ## Packages
-        ### Vite, Axios, React-router-dom, lint, nodemon, express
+### Vite, Axios, React-router-dom, lint, nodemon, express
 
 ## Kvalitétstest
 ### ESLint + minst 1 reviewer innan Merge 
@@ -41,6 +41,7 @@
 ## Instruktioner (Bash)
 ### cd client > npm install > npm run dev
 ### cd server > npm install > npm run dev
+### (eventuellt cd client > npm install @emnapi/core@1.10.0 @emnapi/runtime@1.10.0)
 
 ## Ansvarsområden
 ### Julia:
