@@ -29,13 +29,14 @@ function App() {
 export default App;*/}
 import { BrowserRouter ,Routes,Route} from "react-router-dom";
 import RecipeListPage from "./pages/RecipeListPage";
-
+import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 function App() {
   return (
     <div>
       <BrowserRouter>
       <Routes>
         <Route path='/recipes' element={<RecipeListPage />}/>
+        <Route path='/recipes/:id' element={<RecipeDetailsPage />}/>
         </Routes>
        
       </BrowserRouter>

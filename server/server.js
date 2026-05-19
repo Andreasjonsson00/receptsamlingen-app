@@ -34,8 +34,21 @@ app.get('/recipes',async(req,res)=>{
 }
 );
 
-
-
+//get recipe by id
+app.get('/recipes/:id',async(req,res)=>{
+    const{id}=req.params
+    try{
+        const result=await pool.query(`SELECT * FROM recipes WHERE id=$1 ;`,[id]);
+        res.json(result.rows[0])
+        if(result.rows[0].length===0){
+            return res.status(404).send('Recipe not found')
+        }
+    }
+    catch(err){
+        console.error(err)
+        res.status(500).send('Error fetching recipe')
+    }
+})
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server running on port ${process.env.SERVER_PORT}`);
