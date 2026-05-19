@@ -3,7 +3,7 @@ import { useState } from "react";
 import FavoritesPage from "./pages/FavoritesPage";
 
 function App() {
-  const [favorites, setFavorites] = useState([ // State to hold the list of favorite recipes objects. (all pages will have access to this state)
+  const [favorites] = useState([ // State to hold the list of favorite recipes objects. (all pages will have access to this state)
     {
       id: 1,
       title: "Pasta Primavera", // Mock data for a favorite recipes
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <FavoritesPage favorites={favorites} setFavorites={setFavorites} />
+      <FavoritesPage favorites={favorites} />
     </>
   );
 }
