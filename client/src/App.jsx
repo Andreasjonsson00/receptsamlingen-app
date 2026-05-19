@@ -21,7 +21,6 @@ function App() {
     });
   };
 
-  console.log("Current favorites:", favorites);
   return (
     <div>
       <BrowserRouter>
