@@ -14,12 +14,26 @@ const pool=new Pool({
    password:process.env.DB_PASSWORD,
    ssl: { rejectUnauthorized: false }    
 });
-const result=pool.query.get('SELECT*FROM recipes;')
-console.log(result)
+
 
 app.get("/", (req, res) => {
   res.json({ message: "API is running" });
 });
+
+//get all rows from recipes
+app.get('/recipes',async(req,res)=>{
+    try{
+          const result=await pool.query(`SELECT r.*, ARRAY_AGG(c.name) as category_name FROM recipes r left join recipes_categories rc on r.id=rc.recipe_id left join categories c on c.id=rc.category_id GROUP BY r.id;`)
+        
+          res.json(result.rows)
+    }
+    catch(err){
+        console.error(err);
+        res.status(500).send('Error fetching recipes');
+    }
+}
+);
+
 
 
 
