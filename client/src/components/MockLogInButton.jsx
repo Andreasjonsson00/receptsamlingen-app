@@ -1,15 +1,12 @@
-import React from 'react'
-
-
-const MockLogInButton = () => {
+const MockLogInButton = ({isLoggedIn, setIsLoggedIn}) => {
     
-    function handleLoginClick(){
-        alert("Denna funktion finns inte ännu");
-    }
+  function handleLoginClick(){
+    setIsLoggedIn(!isLoggedIn);
+  }
 
   return (
     <button className="LogInBtn" onClick={handleLoginClick}>
-      Login
+      {isLoggedIn ? "Logout" : "Login"}
     </button>
   )
 }

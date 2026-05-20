@@ -1,11 +1,11 @@
-import React from 'react'
 import MockLogInButton from './MockLogInButton'
 //import Nav here, and insert under pageTitle
 
-const Header = () => {
+const Header = ({isLoggedIn, setIsLoggedIn}) => {
   return (
     <header className="pageHeader">
-        <MockLogInButton />
+        <MockLogInButton isLoggedIn = {isLoggedIn} setIsLoggedIn = {setIsLoggedIn}/>
+        {isLoggedIn && <p>Welcome, Admin. Hope you are hungry!</p>}
         <h2 className="pageTitle">Titel</h2>
         <a href="/" className="pageLogo">Logo</a>
     </header>

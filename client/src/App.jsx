@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+//components
 import Navbar from "./components/Navbar";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+//pages
 import RecipeListPage from "./pages/RecipeListPage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import FavoritesPage from "./pages/FavoritesPage";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
+
 
 function App() {
   const [favorites, setFavorites] = useState([]);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleFavorite = (recipe) => {
     setFavorites((currentFavorites) => {
@@ -25,7 +30,8 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header isLoggedIn = {isLoggedIn} setIsLoggedIn = {setIsLoggedIn} />
+      <Navbar isLoggedIn = {isLoggedIn} />
       <BrowserRouter>
         <Routes>
           <Route
