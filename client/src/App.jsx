@@ -3,9 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RecipeListPage from "./pages/RecipeListPage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import FavoritesPage from "./pages/FavoritesPage";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 
 function App() {
   const [favorites, setFavorites] = useState([]); // State to hold the list of favorite recipes objects. (all pages will have access to this state)
+
 
   const toggleFavorite = (recipe) => {
     setFavorites((currentFavorites) => {
@@ -23,10 +26,11 @@ function App() {
 
   return (
     <div>
+      <Header />
       <BrowserRouter>
         <Routes>
           <Route
-            path="/recipes"
+            path="/"
             element={
               <RecipeListPage
                 favorites={favorites}
@@ -46,6 +50,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
