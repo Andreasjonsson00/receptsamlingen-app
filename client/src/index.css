@@ -60,22 +60,10 @@ body {
   min-height: 100vh;
 }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
 button {
   cursor: pointer;
   border: none;
   background: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
 }
 
 a {

@@ -1,13 +1,11 @@
-import RecipeList from "../components/RecipeList-2";
+import RecipeList from "../components/RecipeList";
 
-
-const RecipeListPage = () => {
+const RecipeListPage = ({ favorites, toggleFavorite }) => {
   return (
     <div>
-        <RecipeList />
-      
+      <RecipeList favorites={favorites} toggleFavorite={toggleFavorite} />
     </div>
-  )
-}
+  );
+};
 
-export default RecipeListPage
+export default RecipeListPage;
