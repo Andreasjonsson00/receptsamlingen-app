@@ -12,7 +12,7 @@ import styles from "./Navbar.module.css";
  *   /create → Create a new recipe
  *   /favorites → Saved favourites
  */
-function Navbar() {
+function Navbar({isLoggedIn}) {
   // Local state: controls whether the mobile menu is open or closed
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -53,11 +53,14 @@ function Navbar() {
             Create
           </NavLink>
         </li>
+
+        {isLoggedIn && ( //Only shown when "logged in"
         <li>
           <NavLink to="/favorites" className={linkClass} onClick={handleLinkClick}>
             Favourites
           </NavLink>
         </li>
+        )}
       </ul>
     </nav>
   );
