@@ -1,0 +1,211 @@
+/* ── Slide-in animation for the navbar on page load ─────── */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Staggered fade-in for each nav item ────────────────── */
+@keyframes fadeInLink {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Mobile dropdown animation ──────────────────────────── */
+@keyframes dropDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Outer nav container ────────────────────────────────── */
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* Right padding so links don't hug the edge */
+  padding: var(--space-sm) var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  animation: slideDown 0.4s ease both;
+}
+
+/* ── Navigation link list ───────────────────────────────── */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Stagger each link's entrance */
+.navLinks li:nth-child(1) { animation: fadeInLink 0.35s ease 0.05s both; }
+.navLinks li:nth-child(2) { animation: fadeInLink 0.35s ease 0.15s both; }
+.navLinks li:nth-child(3) { animation: fadeInLink 0.35s ease 0.25s both; }
+.navLinks li:nth-child(4) { animation: fadeInLink 0.35s ease 0.35s both; }
+
+/* ── Individual link ────────────────────────────────────── */
+.link {
+  position: relative;
+  display: block;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+/* Animated underline that grows from center on hover */
+.link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.25s ease;
+}
+
+.link:hover {
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.link:hover::after {
+  width: 80%;
+}
+
+/* Active state – underline is always visible */
+.linkActive {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.linkActive::after {
+  width: 80%;
+}
+
+/* ── Hamburger button (mobile only) ─────────────────────── */
+.hamburger {
+  display: none;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.hamburger:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+/* Rotate icon slightly when menu is open */
+.hamburger[aria-expanded="true"] {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.icon {
+  display: block;
+  width: 1.25rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+/* ── Mobile breakpoint ──────────────────────────────────── */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-end;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* Hidden by default; shown via navLinksOpen */
+  .navLinks {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) 0;
+    gap: 0;
+    box-shadow: var(--shadow-md);
+  }
+
+  .navLinksOpen {
+    display: flex;
+    animation: dropDown 0.25s ease both;
+  }
+
+  /* Reset stagger on mobile — all items visible at once */
+  .navLinksOpen li {
+    animation: none;
+  }
+
+  .link {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 0;
+    border-bottom: 1px solid var(--color-border);
+    transform: none;
+  }
+
+  /* No growing underline on mobile — use left accent instead */
+  .link::after {
+    display: none;
+  }
+
+  .link:hover {
+    transform: none;
+    background-color: var(--color-surface-alt);
+  }
+
+  .navLinks li:last-child .link {
+    border-bottom: none;
+  }
+
+  /* Active on mobile: left accent bar */
+  .linkActive {
+    border-left: 3px solid var(--color-primary);
+    padding-left: calc(var(--space-md) - 3px);
+  }
+
+  .linkActive::after {
+    display: none;
+  }
+}
