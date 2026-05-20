@@ -12,7 +12,7 @@ import styles from "./Navbar.module.css";
  *   /create → Create a new recipe
  *   /favorites → Saved favourites
  */
-function Navbar({isLoggedin}) {
+function Navbar({isLoggedIn}) {
   // Local state: controls whether the mobile menu is open or closed
   const [menuOpen, setMenuOpen] = useState(false);
 
