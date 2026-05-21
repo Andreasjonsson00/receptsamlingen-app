@@ -50,6 +50,60 @@ app.get('/recipes/:id',async(req,res)=>{
     }
 })
 
+app.post('/create', async (req, res) => {
+  const {
+    title,
+    description,
+    image,
+    ingredients,
+    instructions,
+    prep_time,
+    cook_time,
+    servings,
+    category 
+  } = req.body;
+
+  console.log('received:', req.body);
+
+  try {
+   
+    const recipeResult = await pool.query(
+      `INSERT INTO recipes (title, description, image, ingredients, instructions, prep_time, cook_time, servings)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+       RETURNING id;`,
+      [title, description, image, ingredients, instructions, prep_time, cook_time, servings]
+    );
+
+    const recipeId = recipeResult.rows[0].id;
+
+    
+    if (Array.isArray(category)) {
+      for (const catName of category) {
+       
+        const catResult = await pool.query(
+          `SELECT id FROM categories WHERE name = $1;`,
+          [catName.trim()]
+        );
+
+        if (catResult.rows.length > 0) {
+          const categoryId = catResult.rows[0].id;
+          await pool.query(
+            `INSERT INTO recipes_categories (recipe_id, category_id)
+             VALUES ($1, $2)  ON CONFLICT DO NOTHING;`,
+            [recipeId, categoryId]
+          );
+        }
+      }
+    }
+
+    res.json({ message: 'Recipe added successfully', recipeId });
+  } catch (err) {
+    console.error(err);
+    res.status(400).send('Error adding recipe');
+  }
+});
+
+
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server running on port ${process.env.SERVER_PORT}`);
 });

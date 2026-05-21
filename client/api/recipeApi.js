@@ -22,7 +22,7 @@ export const getById=async(id)=>{
 
 export const add=async(data)=>{
     try{
-        const res=await apiClient.post('/add',data)
+        const res=await apiClient.post('/create',data)
         return res.data
     }
     catch(error){
@@ -42,7 +42,7 @@ export const update = async (id, data) => {
 
 export const remove=async(id)=>{
     try{
-        const res=await apiClient.delete(`/recipes/${id}`)
+        const res=await apiClient.delete(`/${id}`)
         return res.data
     }
     catch(error){
