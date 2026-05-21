@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
       />
       <Link to={`/recipes/${recipe.id}`} className="recipe-item__link">
         <img
-          src={recipe.image || "/default.png"}
+          src={recipe.image || "/recipe_placeholder.png"}
           alt={recipe.title ? `Bild på ${recipe.title}` : "Receptbild"}
           className="recipe-item__image"
         />

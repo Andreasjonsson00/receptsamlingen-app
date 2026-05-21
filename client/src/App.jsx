@@ -12,6 +12,7 @@ import HomePage from "./pages/HomePage";
 import RecipeListPage from "./pages/RecipeListPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import CreateRecipePage from "./pages/CreateRecipePage";
+import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 
 
 function App() {
@@ -62,6 +63,10 @@ function App() {
                 />
               }
             />
+          <Route
+           path='recipes/:id' 
+           element={<RecipeDetailsPage />}
+           />
             <Route path="/create" element={<CreateRecipePage />}/>
           </Routes>
         </main>
