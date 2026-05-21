@@ -1,9 +1,8 @@
 import { useState } from "react"
-import { add } from "../../api/recipeApi";
-import {Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const CreateForm = () => {
-  const navigate = useNavigate();
+const RecipeForm = ({onSubmit}) => {
+ 
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -43,13 +42,8 @@ const CreateForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    try {
-      await add(formData);
-      alert('Recipe added successfully!')
-      navigate('/');
-    } catch (err) {
-      console.log(err.message);
-    }
+    onSubmit(formData)
+   
   };
 
   return (
@@ -100,6 +94,7 @@ const CreateForm = () => {
         <textarea
           name='instructions'
           value={formData.instructions.join('\n')}
+          placeholder="Instructions (one instruction per line)"
           onChange={handleChange}
         />
       </label>
@@ -167,5 +162,5 @@ const CreateForm = () => {
   );
 };
 
-export default CreateForm;
+export default RecipeForm;
 
