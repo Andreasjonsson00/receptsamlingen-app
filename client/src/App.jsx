@@ -11,7 +11,6 @@ import RecipeListPage from "./pages/RecipeListPage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import FavoritesPage from "./pages/FavoritesPage";
 
-
 function App() {
   const [favorites, setFavorites] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,9 +29,9 @@ function App() {
 
   return (
     <div>
-      <Header isLoggedIn = {isLoggedIn} setIsLoggedIn = {setIsLoggedIn} />
-      <Navbar isLoggedIn = {isLoggedIn} />
       <BrowserRouter>
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} />
         <Routes>
           <Route
             path="/"
