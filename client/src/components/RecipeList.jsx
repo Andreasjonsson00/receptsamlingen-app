@@ -1,4 +1,4 @@
-import { getAll } from "../../api/recipeApi"
+import { getAll } from "../api/recipeApi"
 import { useState,useEffect } from "react"
 import Recipe from "./Recipe"
 

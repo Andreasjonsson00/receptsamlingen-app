@@ -1,3 +1,4 @@
+import "./App.css";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -7,9 +8,10 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 //pages
+import HomePage from "./pages/HomePage";
 import RecipeListPage from "./pages/RecipeListPage";
-import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import FavoritesPage from "./pages/FavoritesPage";
+
 
 function App() {
   const [favorites, setFavorites] = useState([]);
@@ -28,34 +30,43 @@ function App() {
   };
 
   return (
-    <div>
-      <BrowserRouter>
-        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-        <Navbar isLoggedIn={isLoggedIn} />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <RecipeListPage
-                favorites={favorites}
-                toggleFavorite={toggleFavorite}
-              />
-            }
-          />
-          <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
-          <Route
-            path="/favorites"
-            element={
-              <FavoritesPage
-                favorites={favorites}
-                toggleFavorite={toggleFavorite}
-              />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+  <BrowserRouter>
+    <div className="app-layout">
+    <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+    <Navbar isLoggedIn = {isLoggedIn} />
+        <main className="main-content">
+         <Routes>
+            <Route path="/" element={
+                <HomePage
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
+            />
+            <Route
+              path="/recipes"
+              element={
+                <RecipeListPage
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <FavoritesPage
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
+            />
+          </Routes>
+        </main>
+
       <Footer />
     </div>
+  </BrowserRouter>
   );
 }
 
