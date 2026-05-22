@@ -30,7 +30,7 @@ const RecipeDetails = () => {
         if(!window.confirm('Are you sur you want to delete the recipe'))return;
         await remove(id);
         alert('recipe deleted!')
-        navigate('/recipes')
+        navigate('/')
     }
     catch(err){
         setError(err.message)
