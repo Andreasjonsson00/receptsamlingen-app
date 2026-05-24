@@ -27,7 +27,7 @@ const RecipeDetails = () => {
 
   const handleDelete=async()=>{
     try{
-        if(!window.confirm('Are you sur you want to delete the recipe'))return;
+        if(!window.confirm('Are you sure you want to delete the recipe'))return;
         await remove(id);
         alert('recipe deleted!')
         navigate('/')
@@ -46,7 +46,11 @@ const RecipeDetails = () => {
   return (
    <div>
     <h3>{recipe.title}</h3>
-    <img src={recipe.image?recipe.image:'/default.png'} alt={recipe.title} width="250" />
+    <img 
+      src={recipe.image?recipe.image:'/default.png'} 
+      alt={recipe.title} 
+      width="250" 
+    />
     <p>{recipe.description}</p>
     <p><strong>Ingredients:</strong> {recipe.ingredients.join(", ")}</p>
     <p><strong>Instructions:</strong> {recipe.instructions?.join(' ')}.</p>

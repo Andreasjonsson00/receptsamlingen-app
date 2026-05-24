@@ -9,12 +9,18 @@ const HomePage = ({ favorites, toggleFavorite }) => {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
+  const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
         const data = await getAll();
         setRecipes(data);
+        
+        const shuffled = [...data]
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
+        setFeatured(shuffled);
       } catch (err) {
         setError(err.message);
       }
@@ -23,13 +29,11 @@ const HomePage = ({ favorites, toggleFavorite }) => {
   }, []);
 
   const filtered = recipes.filter((r) => {
-    const matchesSearch = r.title.toLowerCase().includes(search.toLowerCase());
+  const matchesSearch = r.title?.toLowerCase().includes(search.toLowerCase()) ?? false;
     const matchesCategory =
       !category || r.category_name?.includes(category);
     return matchesSearch && matchesCategory;
   });
-
-  const featured = filtered.slice(0, 3);
 
   const allCategories = [
     ...new Set(recipes.flatMap((r) => r.category_name || [])),
@@ -58,7 +62,7 @@ const HomePage = ({ favorites, toggleFavorite }) => {
       </section>
 
       <section className="home-page__list">
-        <h2 className="home-page__list-title">Add your favorites</h2>
+        <h2 className="home-page__list-title">All of our favorites</h2>
         {error && <p className="error-message">{error}</p>}
         <div className="recipe-list recipe-list--horizontal">
           {featured.map((recipe) => (

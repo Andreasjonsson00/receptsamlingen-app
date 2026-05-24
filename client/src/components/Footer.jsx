@@ -1,10 +1,9 @@
 const Footer = () => {
   return (
-    <footer className="pageFooter">
-      <p>Frontend Frameworks © 2026</p>
-      <p>Group 8</p>
+    <footer className="footer">
+      <p>Grupp 8 &copy; {new Date().getFullYear()} All rights reserved.</p>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

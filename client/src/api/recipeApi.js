@@ -6,7 +6,7 @@ export const getAll=async()=>{
         return result.data;
     }
     catch(error){
-        throw new Error(`failed to fetch recipes:`,{cause:error})
+        throw new Error(`Failed to fetch recipes: ${error.message}`, {cause: error})
     }
 }
 
@@ -16,7 +16,7 @@ export const getById=async(id)=>{
         return result.data
     }
     catch(error){
-        throw new Error(`Failed to fetch recipe ${id}`,{cause:error})
+        throw new Error(`Failed to fetch recipe ${id}: ${error.message}`, {cause: error})
     }
 }
 
@@ -26,7 +26,7 @@ export const add=async(data)=>{
         return res.data
     }
     catch(error){
-        throw new Error(`Failed to add recipe:`, {cause:error})
+        throw new Error(`Failed to add recipe: ${error.message}`, {cause: error})
     }
 }
 
@@ -35,7 +35,7 @@ export const update = async (id, data) => {
     const res = await apiClient.put(`/recipes/${id}`, data);
     return res.data;
   } catch (error) {
-    throw new Error(`Failed to edit recipe: `,{cause:error});
+    throw new Error(`Failed to edit recipe: ${error.message}`, {cause: error});
   }
 };
 
@@ -46,7 +46,7 @@ export const remove=async(id)=>{
         return res.data
     }
     catch(error){
-        throw new Error(`failed to delete recipe:`,{cause:error})
+        throw new Error(`Failed to delete recipe: ${error.message}`, {cause: error});
     }
   
 }
