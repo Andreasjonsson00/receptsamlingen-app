@@ -41,6 +41,10 @@ const HomePage = ({ favorites, toggleFavorite }) => {
 
   return (
     <div className="home-page">
+      <section className="home-page__hero">
+        <img src="/hero.jpg" alt="" className="home-page__hero-image" />
+      </section>
+
       <section className="home-page__controls">
         <SearchBar value={search} onChange={setSearch} />
         <select
@@ -55,10 +59,6 @@ const HomePage = ({ favorites, toggleFavorite }) => {
             </option>
           ))}
         </select>
-      </section>
-
-      <section className="home-page__hero">
-        <img src="/hero.jpg" alt="" className="home-page__hero-image" />
       </section>
 
       <section className="home-page__list">
