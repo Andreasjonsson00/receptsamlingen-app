@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Recipe from "../components/Recipe";
 import SearchBar from "../components/SearchBar";
 import { getAll } from "../api/recipeApi";
+import FilterBar from "../components/FilterBar";
 
 const HomePage = ({ favorites, toggleFavorite }) => {
   const [recipes, setRecipes] = useState([]);
@@ -47,18 +48,7 @@ const HomePage = ({ favorites, toggleFavorite }) => {
 
       <section className="home-page__controls">
         <SearchBar value={search} onChange={setSearch} />
-        <select
-          className="category-select"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option value="">All categories</option>
-          {allCategories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+        <FilterBar categories={allCategories} value = {category} onChange={setCategory} />
       </section>
 
       <section className="home-page__list">

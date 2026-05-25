@@ -19,6 +19,9 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
       try {
         const data = await getAll();
         setRecipes(data)
+
+        //Debug log
+        console.log(recipes)
       } catch (err) {
         setError(err.message)
       }
