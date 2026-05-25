@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //components
@@ -14,10 +14,30 @@ import FavoritesPage from "./pages/FavoritesPage";
 import CreateRecipePage from "./pages/CreateRecipePage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 
+const FAVORITES_STORAGE_KEY = "favorites";
+
+const getStoredFavorites = () => {
+  const storedFavorites = localStorage.getItem(FAVORITES_STORAGE_KEY);
+
+  if (!storedFavorites) {
+    return [];
+  }
+
+  try {
+    const parsedFavorites = JSON.parse(storedFavorites);
+    return Array.isArray(parsedFavorites) ? parsedFavorites : [];
+  } catch {
+    return [];
+  }
+};
 
 function App() {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(getStoredFavorites);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
+  }, [favorites]);
 
   const toggleFavorite = (recipe) => {
     setFavorites((currentFavorites) => {
