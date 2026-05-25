@@ -55,7 +55,8 @@ const HomePage = ({ favorites, toggleFavorite }) => {
         <h2 className="home-page__list-title">All of our Recipes</h2>
         {error && <p className="error-message">{error}</p>}
         <div className="recipe-list recipe-list--horizontal">
-          {featured.map((recipe) => (
+          
+          {filtered.slice(0, 3).map((recipe) => (
             <Recipe
               key={recipe.id}
               recipe={recipe}
