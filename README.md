@@ -11,7 +11,7 @@
 ### Receptsamling
 #### -Startsida ("/"): Lista alla recept med bild, titel och kort beskrivning. Även sök & filter på denna sida: sök efter recept via titel eller filtrera på kategori (t.ex. “Vegetariskt”).
 #### -Detaljsida ("/recipes/:id"): Visa ingredienser och instruktioner för ett recept (/recipe/:id)
-#### -Favoritsida ("/favourites"): Samlingssida för favoriserade recept med EDIT, REMOVE(?)
+#### -Favoritsida ("/favorites"): Samlingssida för favoriserade recept med EDIT, REMOVE(?)
 ### CSS
 #### Vi använder CSS grid. Vi jobbar så mycket med “global” css (generell css i index.css-filen) som möjligt.
 ### (VG, extra)

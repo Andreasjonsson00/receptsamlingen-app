@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 //pages
 import HomePage from "./pages/HomePage";
 import RecipeListPage from "./pages/RecipeListPage";
-import FavoritesPage from "./pages/FavoritesPage";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import CreateRecipePage from "./pages/CreateRecipePage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 
@@ -33,7 +33,7 @@ const getStoredFavorites = () => {
 
 function App() {
   const [favorites, setFavorites] = useState(getStoredFavorites);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
@@ -52,13 +52,15 @@ function App() {
   };
 
   return (
-  <BrowserRouter>
-    <div className="app-layout">
-    <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-    <Navbar isLoggedIn = {isLoggedIn} />
+    <BrowserRouter>
+      <div className="app-layout">
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} />
         <main className="main-content">
-         <Routes>
-            <Route path="/" element={
+          <Routes>
+            <Route
+              path="/"
+              element={
                 <HomePage
                   favorites={favorites}
                   toggleFavorite={toggleFavorite}
@@ -83,17 +85,14 @@ function App() {
                 />
               }
             />
-          <Route
-           path='recipes/:id' 
-           element={<RecipeDetailsPage />}
-           />
-            <Route path="/create" element={<CreateRecipePage />}/>
+            <Route path="recipes/:id" element={<RecipeDetailsPage />} />
+            <Route path="/create" element={<CreateRecipePage />} />
           </Routes>
         </main>
 
-      <Footer />
-    </div>
-  </BrowserRouter>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

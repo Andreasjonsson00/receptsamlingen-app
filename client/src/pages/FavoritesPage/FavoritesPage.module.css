@@ -1,0 +1,6 @@
+.favorites-page__list-title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  text-align: center;
+  margin: 0 0 var(--space-lg);
+}
