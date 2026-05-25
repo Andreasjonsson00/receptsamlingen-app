@@ -30,7 +30,7 @@ const RecipeForm = ({onSubmit}) => {
         return { ...prev, ingredients: value.split(',').map(i => i.trim()) };
       }
       if (name === 'instructions') {
-        return { ...prev, instructions: value.split('\n').map(i => i.trim()) };
+        return { ...prev, instructions: value.split('\n')};
       }
       if (type === 'number') {
         return { ...prev, [name]: value ? parseInt(value, 10) : null };
