@@ -103,6 +103,24 @@ app.post('/create', async (req, res) => {
   }
 });
 
+//delete recipe
+app.delete('/recipes/:id',async(req,res)=>{
+  const {id}=req.params
+  console.log(id)
+  try{
+    const result=await pool.query(`DELETE FROM recipes WHERE id=$1 RETURNING*;`,[id]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).send("Recipe not found");
+     }
+    res.json(result.rows[0])
+  }
+    catch(err){
+      console.error(err)
+      res.status(500).send('Error deleting recipe')
+    }
+})
+
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server running on port ${process.env.SERVER_PORT}`);
