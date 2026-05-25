@@ -62,7 +62,7 @@ const HomePage = ({ favorites, toggleFavorite }) => {
       </section>
 
       <section className="home-page__list">
-        <h2 className="home-page__list-title">All of our favorites</h2>
+        <h2 className="home-page__list-title">All of our Recipes</h2>
         {error && <p className="error-message">{error}</p>}
         <div className="recipe-list recipe-list--horizontal">
           {featured.map((recipe) => (
