@@ -70,13 +70,11 @@ const HomePage = ({ favorites, toggleFavorite }) => {
           ))}
         </div>
 
-        {filtered.length > 6 && (
           <div className="home-page__show-more">
             <Link to="/recipes" className="button button--primary">
               Show more recipes
             </Link>
           </div>
-        )}
       </section>
     </div>
   );
