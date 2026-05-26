@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Recipe from "../../components/Recipe/Recipe";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { getAll } from "../../api/recipeApi";
 import FilterBar from "../../components/FilterBar/FilterBar";
+import { getAll } from "../../api/recipeApi";
 import styles from "./HomePage.module.css";
 import recipeListStyles from "../../components/RecipeList/RecipeList.module.css";
 
 const HomePage = ({ favorites, toggleFavorite }) => {
+  const { t } = useTranslation();
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
@@ -17,8 +19,6 @@ const HomePage = ({ favorites, toggleFavorite }) => {
     const fetchRecipes = async () => {
       try {
         const data = await getAll();
-        setRecipes(data);
-
         const shuffled = [...data]
           .sort(() => Math.random() - 0.5)
           .slice(0, 6);
@@ -57,8 +57,9 @@ const HomePage = ({ favorites, toggleFavorite }) => {
       </section>
 
       <section>
-        <h2 className={styles.listTitle}>All of our Recipes</h2>
-        {error && <p className={styles.errorMessage}>{error}</p>}
+        <h2 className={styles.listTitle}>{t("home.allRecipes")}</h2>
+        {error && <p className={styles.errorMessage}>{t("errors.fetchFailed")}</p>}
+
         <div className={recipeListStyles.horizontal}>
           {filtered.slice(0, 6).map((recipe) => (
             <Recipe
@@ -73,7 +74,7 @@ const HomePage = ({ favorites, toggleFavorite }) => {
 
         <div className={styles.showMore}>
           <Link to="/recipes" className={styles.showMoreLink}>
-            Show more recipes
+            {t("home.showMore")}
           </Link>
         </div>
       </section>

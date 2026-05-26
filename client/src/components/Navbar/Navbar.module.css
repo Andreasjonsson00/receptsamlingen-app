@@ -209,3 +209,20 @@
     display: none;
   }
 }
+
+/* ── Language switcher placement ────────────────────────── */
+.languageSwitcherWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: var(--space-sm);
+  animation: fadeInLink 0.35s ease 0.4s both;
+}
+
+@media (max-width: 600px) {
+  .languageSwitcherWrapper {
+    margin-left: 0;
+    margin-top: var(--space-xs);
+    align-self: flex-end;
+    animation: none;
+  }
+}

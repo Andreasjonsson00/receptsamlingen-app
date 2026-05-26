@@ -1,26 +1,22 @@
-import { getAll } from "../../api/recipeApi";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { getAll } from "../../api/recipeApi";
 import Recipe from "../Recipe/Recipe";
 import SearchBar from "../SearchBar/SearchBar";
-import styles from "./RecipeList.module.css";
 import FilterBar from "../FilterBar/FilterBar";
-
+import styles from "./RecipeList.module.css";
 
 const RecipeList = ({ favorites = [], toggleFavorite }) => {
+  const { t } = useTranslation();
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
-
-  // Search query state controls what the user has typed
   const [searchQuery, setSearchQuery] = useState("");
-
-  //Controls filtering
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
         const data = await getAll();
-
         setRecipes(data);
       } catch (err) {
         setError(err.message);
@@ -29,17 +25,13 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
     fetchRecipes();
   }, []);
 
-  // Filter recipes based on the search query
-  // Converts both to lowercase so "Fish" matches "fish"
   const filteredRecipes = recipes.filter((recipe) => {
     const matchesSearch = recipe.title
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
-
     const matchesCategory =
       selectedCategory === "" ||
       recipe.category_name?.includes(selectedCategory);
-
     return matchesSearch && matchesCategory;
   });
 
@@ -47,7 +39,7 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
     ...new Set(recipes.flatMap((recipe) => recipe.category_name || [])),
   ];
 
-  if (error) return <p>{error}</p>;
+  if (error) return <p>{t("errors.fetchFailed")}</p>;
 
   return (
     <div>

@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Hem",
+    "recipes": "Recept",
+    "favorites": "Favoriter",
+    "createRecipe": "Lägg till recept",
+    "login": "Logga in",
+    "logout": "Logga ut",
+    "openMenu": "Öppna meny",
+    "closeMenu": "Stäng meny"
+  },
+  "home": {
+    "addYourFavorites": "Lägg till dina favoriter",
+    "showMore": "Visa fler recept",
+    "allCategories": "Alla kategorier",
+    "allRecipes": "Alla våra recept"
+  },
+  "search": {
+    "placeholder": "Sök recept..."
+  },
+  "recipe": {
+    "imageAlt": "Bild på {{title}}",
+    "defaultImageAlt": "Receptbild",
+    "prepTime": "Förberedelsetid",
+    "cookTime": "Tillagningstid",
+    "servings": "Portioner",
+    "ingredients": "Ingredienser",
+    "instructions": "Instruktioner",
+    "minutes": "min",
+    "loading": "Laddar recept...",
+    "backToRecipes": "Tillbaka till recept"
+  },
+  "form": {
+    "addRecipe": "Lägg till recept",
+    "editRecipe": "Redigera recept",
+    "title": "Titel",
+    "titlePlaceholder": "t.ex. Spaghetti Carbonara",
+    "description": "Beskrivning",
+    "descriptionPlaceholder": "Kort beskrivning",
+    "imageUrl": "Bild-URL",
+    "ingredients": "Ingredienser",
+    "ingredientsPlaceholder": "Ingredienser (kommaseparerat)",
+    "instructions": "Instruktioner",
+    "instructionsPlaceholder": "En instruktion per rad",
+    "prepTime": "Förberedelsetid (min)",
+    "cookTime": "Tillagningstid (min)",
+    "servings": "Portioner",
+    "categories": "Kategorier",
+    "submit": "Spara",
+    "cancel": "Avbryt"
+  },
+  "categories": {
+    "mainCourse": "Huvudrätt",
+    "starter": "Förrätt",
+    "dessert": "Efterrätt",
+    "vegetarian": "Vegetariskt",
+    "quick30": "Snabbt (<30 min)"
+  },
+  "actions": {
+    "delete": "Ta bort",
+    "edit": "Redigera",
+    "confirmDelete": "Är du säker på att du vill ta bort receptet?",
+    "addToFavorites": "Lägg till i favoriter",
+    "removeFromFavorites": "Ta bort från favoriter"
+  },
+  "pages": {
+    "favoritesTitle": "Dina favoriter",
+    "favoritesEmpty": "Du har inte lagt till några favoriter ännu.",
+    "recipesTitle": "Alla recept",
+    "createRecipeTitle": "Skapa ett recept",
+    "recipeNotFound": "Receptet hittades inte"
+  },
+  "header": {
+  "title": "Receptsamlingen",
+  "tagline": "Recept för vardag och fest",
+  "welcome": "Välkommen, Admin. Hoppas du är hungrig!",
+  "goToHomepage": "Gå till startsidan"
+  },
+  "footer": {
+  "copyright": "Grupp 8 © {{year}} Alla rättigheter förbehållna."
+  },
+  "alerts": {
+  "recipeAdded": "Receptet har lagts till!",
+  "recipeUpdated": "Receptet har uppdaterats!",
+  "recipeDeleted": "Receptet har tagits bort!"
+  },
+  "errors": {
+    "fetchFailed": "Kunde inte hämta recept.",
+    "deleteFailed": "Kunde inte ta bort receptet.",
+    "saveFailed": "Kunde inte spara receptet."
+  }
+}
