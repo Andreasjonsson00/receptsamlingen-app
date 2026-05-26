@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { translateCategory } from "../../constants/categories";
 import FavoriteButton from "../ToggleFavoriteButton/ToggleFavoriteButton";
 import styles from "./Recipe.module.css";
-import { translateCategory } from "../../constants/categories";
 
 const Recipe = ({
   recipe,
@@ -12,6 +12,7 @@ const Recipe = ({
   compact = false,
 }) => {
   const { t } = useTranslation();
+  const contentLang = recipe.language || "sv";
 
   const itemClass = [
     styles.item,
@@ -39,9 +40,13 @@ const Recipe = ({
           className={styles.image}
         />
         <div className={styles.content}>
-          <h3 className={styles.title}>{recipe.title}</h3>
+          <h3 className={styles.title} lang={contentLang}>
+            {recipe.title}
+          </h3>
           {recipe.description && (
-            <p className={styles.description}>{recipe.description}</p>
+            <p className={styles.description} lang={contentLang}>
+              {recipe.description}
+            </p>
           )}
           {recipe.category_name?.filter(Boolean).length > 0 && (
             <p className={styles.category}>

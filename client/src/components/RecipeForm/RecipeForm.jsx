@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import styles from "./RecipeForm.module.css";
 import { CATEGORIES } from "../../constants/categories";
+import styles from "./RecipeForm.module.css";
 
 const RecipeForm = ({ onSubmit }) => {
   const { t } = useTranslation();
@@ -17,6 +17,7 @@ const RecipeForm = ({ onSubmit }) => {
     cook_time: null,
     servings: null,
     category: [],
+    language: "sv",
   });
 
   const handleChange = (e) => {
@@ -77,6 +78,22 @@ const RecipeForm = ({ onSubmit }) => {
           onChange={handleChange}
           placeholder={t("form.descriptionPlaceholder")}
         />
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor="language" className={styles.label}>
+          {t("form.recipeLanguage")}
+        </label>
+        <select
+          id="language"
+          name="language"
+          className={styles.input}
+          value={formData.language}
+          onChange={handleChange}
+        >
+          <option value="sv">{t("form.languageSv")}</option>
+          <option value="en">{t("form.languageEn")}</option>
+        </select>
       </div>
 
       <div className={styles.field}>
