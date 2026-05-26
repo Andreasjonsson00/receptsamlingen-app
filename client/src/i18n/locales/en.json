@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Home",
+    "recipes": "Recipes",
+    "favorites": "Favorites",
+    "createRecipe": "Add recipe",
+    "login": "Log in",
+    "logout": "Log out",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "home": {
+    "addYourFavorites": "Add your favorites",
+    "showMore": "Show more recipes",
+    "allCategories": "All categories",
+    "allRecipes": "All of our recipes"
+  },
+  "search": {
+    "placeholder": "Search recipes..."
+  },
+  "recipe": {
+    "imageAlt": "Image of {{title}}",
+    "defaultImageAlt": "Recipe image",
+    "prepTime": "Prep time",
+    "cookTime": "Cook time",
+    "servings": "Servings",
+    "ingredients": "Ingredients",
+    "instructions": "Instructions",
+    "minutes": "min",
+    "loading": "Loading recipe...",
+    "backToRecipes": "Back to recipes"
+  },
+  "form": {
+    "addRecipe": "Add a recipe",
+    "editRecipe": "Edit recipe",
+    "title": "Title",
+    "titlePlaceholder": "e.g. Spaghetti Carbonara",
+    "description": "Description",
+    "descriptionPlaceholder": "Short description",
+    "imageUrl": "Image URL",
+    "ingredients": "Ingredients",
+    "ingredientsPlaceholder": "Ingredients (comma separated)",
+    "instructions": "Instructions",
+    "instructionsPlaceholder": "One instruction per line",
+    "prepTime": "Prep time (min)",
+    "cookTime": "Cook time (min)",
+    "servings": "Servings",
+    "categories": "Categories",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+  "categories": {
+    "mainCourse": "Main Course",
+    "starter": "Starter",
+    "dessert": "Dessert",
+    "vegetarian": "Vegetarian",
+    "quick30": "Quick (<30 min)"
+  },
+  "actions": {
+    "delete": "Delete",
+    "edit": "Edit",
+    "confirmDelete": "Are you sure you want to delete the recipe?",
+    "addToFavorites": "Add to favorites",
+    "removeFromFavorites": "Remove from favorites"
+  },
+  "pages": {
+    "favoritesTitle": "Your favorites",
+    "favoritesEmpty": "You haven't added any favorites yet.",
+    "recipesTitle": "All recipes",
+    "createRecipeTitle": "Create a recipe",
+    "recipeNotFound": "Recipe not found"
+  },
+  "header": {
+  "title": "Receptsamlingen",
+  "tagline": "Recipes for every day and special occasions",
+  "welcome": "Welcome, Admin. Hope you are hungry!",
+  "goToHomepage": "Go to homepage"
+  },
+  "footer": {
+    "copyright": "Grupp 8 © {{year}} All rights reserved."
+  },
+  "alerts": {
+  "recipeAdded": "Recipe added successfully!",
+  "recipeUpdated": "Recipe updated!",
+  "recipeDeleted": "Recipe deleted!"
+  },
+  "errors": {
+    "fetchFailed": "Failed to load recipes.",
+    "deleteFailed": "Failed to delete recipe.",
+    "saveFailed": "Failed to save recipe."
+  }
+}

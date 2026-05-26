@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import FavoriteButton from "../ToggleFavoriteButton/ToggleFavoriteButton";
 import styles from "./Recipe.module.css";
-   
+import { translateCategory } from "../../constants/categories";
+
 const Recipe = ({
   recipe,
   isFavorite,
@@ -9,6 +11,8 @@ const Recipe = ({
   horizontal = false,
   compact = false,
 }) => {
+  const { t } = useTranslation();
+
   const itemClass = [
     styles.item,
     horizontal ? styles.horizontal : "",
@@ -17,8 +21,8 @@ const Recipe = ({
     .filter(Boolean)
     .join(" ");
 
-     return (
-       <article className={itemClass}>
+  return (
+    <article className={itemClass}>
       <FavoriteButton
         isFavorite={isFavorite}
         onToggle={() => toggleFavorite(recipe)}
@@ -27,7 +31,11 @@ const Recipe = ({
       <Link to={`/recipes/${recipe.id}`} className={styles.link}>
         <img
           src={recipe.image || "/recipe_placeholder.png"}
-          alt={recipe.title ? `Bild på ${recipe.title}` : "Receptbild"}
+          alt={
+            recipe.title
+              ? t("recipe.imageAlt", { title: recipe.title })
+              : t("recipe.defaultImageAlt")
+          }
           className={styles.image}
         />
         <div className={styles.content}>
@@ -37,7 +45,10 @@ const Recipe = ({
           )}
           {recipe.category_name?.filter(Boolean).length > 0 && (
             <p className={styles.category}>
-              {recipe.category_name.filter(Boolean).join(", ")}
+              {recipe.category_name
+                .filter(Boolean)
+                .map((c) => translateCategory(t, c))
+                .join(", ")}
             </p>
           )}
         </div>

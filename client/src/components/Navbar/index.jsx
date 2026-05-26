@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import styles from "./Navbar.module.css";
 
 /**
@@ -12,24 +14,23 @@ import styles from "./Navbar.module.css";
  *   /create → Create a new recipe
  *   /favorites → Saved favorites
  */
-function Navbar({isLoggedIn}) {
-  // Local state: controls whether the mobile menu is open or closed
+function Navbar({ isLoggedIn }) {
+  const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLinkClick = () => setMenuOpen(false);
   const toggleMenu = () => setMenuOpen((prev) => !prev);
-
   const linkClass = ({ isActive }) =>
     isActive ? `${styles.link} ${styles.linkActive}` : styles.link;
 
   return (
-    <nav className={styles.navbar} aria-label="Main navigation">
+    <nav className={styles.navbar} aria-label={t("nav.home")}>
       <button
         className={styles.hamburger}
         onClick={toggleMenu}
         aria-expanded={menuOpen}
         aria-controls="nav-links"
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
       >
         {menuOpen ? (
           <span className={styles.icon} aria-hidden="true">✕</span>
@@ -45,23 +46,26 @@ function Navbar({isLoggedIn}) {
       >
         <li>
           <NavLink to="/" end className={linkClass} onClick={handleLinkClick}>
-            Home
+            {t("nav.home")}
           </NavLink>
         </li>
         <li>
           <NavLink to="/create" className={linkClass} onClick={handleLinkClick}>
-            Create
+            {t("nav.createRecipe")}
           </NavLink>
         </li>
-
-        {isLoggedIn && ( //Only shown when "logged in"
-        <li>
-          <NavLink to="/favorites" className={linkClass} onClick={handleLinkClick}>
-            Favorites
-          </NavLink>
-        </li>
+        {isLoggedIn && (
+          <li>
+            <NavLink to="/favorites" className={linkClass} onClick={handleLinkClick}>
+              {t("nav.favorites")}
+            </NavLink>
+          </li>
         )}
       </ul>
+
+      <div className={styles.languageSwitcherWrapper}>
+        <LanguageSwitcher />
+      </div>
     </nav>
   );
 }

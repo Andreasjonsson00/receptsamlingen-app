@@ -1,10 +1,12 @@
-import Recipe from "../../components/Recipe/Recipe";
-import styles from "./FavoritesPage.module.css";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import Recipe from "../../components/Recipe/Recipe";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FilterBar from "../../components/FilterBar/FilterBar";
+import styles from "./FavoritesPage.module.css";
 
 const FavoritesPage = ({ favorites, toggleFavorite }) => {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -35,7 +37,13 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
           onChange={setSelectedCategory}
         />
       </section>
-      <ul className={styles.favoritesList}>
+
+      {favorites.length > 0 ? (
+        <>
+          <h2 className={styles["favorites-page__list-title"]}>
+            {t("pages.favoritesTitle")}
+          </h2>
+      <ul className={styles.list}>
         {filteredRecipes.map((recipe) => (
           <Recipe
             key={recipe.id}
@@ -45,24 +53,9 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
           />
         ))}
       </ul>
-      {favorites.length > 0 ? (
-        <>
-          <h2 className={styles["favorites-page__list-title"]}>
-            Your Favorite Recipes
-          </h2>
-          <ul className={styles.list}>
-            {favorites.map((recipe) => (
-              <Recipe
-                key={recipe.id}
-                recipe={recipe}
-                isFavorite={true}
-                toggleFavorite={toggleFavorite}
-              />
-            ))}
-          </ul>
         </>
       ) : (
-        <p>You have no favorite recipes yet. Try adding some!</p>
+        <h2>{t("pages.favoritesEmpty")}</h2>
       )}
     </>
   );

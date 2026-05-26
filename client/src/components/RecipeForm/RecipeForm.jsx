@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import styles from "./RecipeForm.module.css";
-
-const CATEGORIES = [
-  { id: "MainCourse", name: "Main Course" },
-  { id: "Starter", name: "Starter" },
-  { id: "Dessert", name: "Dessert" },
-  { id: "Vegetarian", name: "Vegetarian" },
-  { id: "Quick30", name: "Quick (<30 min)" },
-];
+import { CATEGORIES } from "../../constants/categories";
 
 const RecipeForm = ({ onSubmit }) => {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -50,10 +46,12 @@ const RecipeForm = ({ onSubmit }) => {
 
   return (
     <form className={styles.recipeForm} onSubmit={handleSubmit}>
-      <h2 className={styles.title}>Add a recipe</h2>
+      <h2 className={styles.title}>{t("form.addRecipe")}</h2>
 
       <div className={styles.field}>
-        <label htmlFor="title" className={styles.label}>Title</label>
+        <label htmlFor="title" className={styles.label}>
+          {t("form.title")}
+        </label>
         <input
           id="title"
           type="text"
@@ -61,13 +59,15 @@ const RecipeForm = ({ onSubmit }) => {
           className={styles.input}
           value={formData.title}
           onChange={handleChange}
-          placeholder="e.g. Spaghetti Carbonara"
+          placeholder={t("form.titlePlaceholder")}
           required
         />
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="description" className={styles.label}>Description</label>
+        <label htmlFor="description" className={styles.label}>
+          {t("form.description")}
+        </label>
         <input
           id="description"
           type="text"
@@ -75,12 +75,14 @@ const RecipeForm = ({ onSubmit }) => {
           className={styles.input}
           value={formData.description}
           onChange={handleChange}
-          placeholder="Short description"
+          placeholder={t("form.descriptionPlaceholder")}
         />
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="image" className={styles.label}>Image URL</label>
+        <label htmlFor="image" className={styles.label}>
+          {t("form.imageUrl")}
+        </label>
         <input
           id="image"
           name="image"
@@ -92,34 +94,40 @@ const RecipeForm = ({ onSubmit }) => {
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="ingredients" className={styles.label}>Ingredients</label>
+        <label htmlFor="ingredients" className={styles.label}>
+          {t("form.ingredients")}
+        </label>
         <input
           id="ingredients"
           type="text"
           name="ingredients"
           className={styles.input}
           value={formData.ingredients.join(", ")}
-          placeholder="Ingredients (comma separated)"
+          placeholder={t("form.ingredientsPlaceholder")}
           onChange={handleChange}
           required
         />
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="instructions" className={styles.label}>Instructions</label>
+        <label htmlFor="instructions" className={styles.label}>
+          {t("form.instructions")}
+        </label>
         <textarea
           id="instructions"
           name="instructions"
           className={styles.textarea}
           value={formData.instructions.join("\n")}
-          placeholder="One instruction per line"
+          placeholder={t("form.instructionsPlaceholder")}
           onChange={handleChange}
         />
       </div>
 
       <div className={styles.row}>
         <div className={styles.field}>
-          <label htmlFor="prep_time" className={styles.label}>Prep time (min)</label>
+          <label htmlFor="prep_time" className={styles.label}>
+            {t("form.prepTime")}
+          </label>
           <input
             id="prep_time"
             type="number"
@@ -132,7 +140,9 @@ const RecipeForm = ({ onSubmit }) => {
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="cook_time" className={styles.label}>Cook time (min)</label>
+          <label htmlFor="cook_time" className={styles.label}>
+            {t("form.cookTime")}
+          </label>
           <input
             id="cook_time"
             type="number"
@@ -145,7 +155,9 @@ const RecipeForm = ({ onSubmit }) => {
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="servings" className={styles.label}>Servings</label>
+          <label htmlFor="servings" className={styles.label}>
+            {t("form.servings")}
+          </label>
           <input
             id="servings"
             type="number"
@@ -159,7 +171,7 @@ const RecipeForm = ({ onSubmit }) => {
       </div>
 
       <fieldset className={styles.categories}>
-        <legend className={styles.label}>Categories</legend>
+        <legend className={styles.label}>{t("form.categories")}</legend>
         <div className={styles.checkboxGroup}>
           {CATEGORIES.map((cat) => (
             <label key={cat.id} className={styles.checkbox}>
@@ -170,15 +182,19 @@ const RecipeForm = ({ onSubmit }) => {
                 checked={formData.category.includes(cat.name)}
                 onChange={handleChange}
               />
-              <span>{cat.name}</span>
+              <span>{t(cat.labelKey)}</span>
             </label>
           ))}
         </div>
       </fieldset>
 
       <div className={styles.actions}>
-        <button type="submit" className="button button--primary">Submit</button>
-        <Link to="/" className="button button--secondary">Cancel</Link>
+        <button type="submit" className="button button--primary">
+          {t("form.submit")}
+        </button>
+        <Link to="/" className="button button--secondary">
+          {t("form.cancel")}
+        </Link>
       </div>
     </form>
   );

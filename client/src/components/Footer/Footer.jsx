@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
 import styles from "./Footer.module.css";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className={styles.footer}>
-      <p>Grupp 8 &copy; {new Date().getFullYear()} All rights reserved.</p>
+      <p>{t("footer.copyright", { year: new Date().getFullYear() })}</p>
     </footer>
   );
 };
