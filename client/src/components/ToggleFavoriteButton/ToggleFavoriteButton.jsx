@@ -1,10 +1,11 @@
 import { Heart } from "react-feather";
+import styles from "./ToggleFavoriteButton.module.css";
 
 const ToggleFavoriteButton = ({ isFavorite, onToggle, floating = false }) => {
   const classes = [
-    "favorite-button",
-    isFavorite ? "favorite-button--active" : "",
-    floating ? "favorite-button--floating" : "",
+    styles.favoriteButton,
+    isFavorite ? styles.active : "",
+    floating ? styles.floating : "",
   ]
     .filter(Boolean)
     .join(" ");

@@ -1,4 +1,4 @@
-import RecipeDetails from "../components/RecipeDetails";
+import RecipeDetails from "../components/RecipeDetails/RecipeDetails";
 
 
 

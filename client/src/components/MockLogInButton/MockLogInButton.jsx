@@ -1,3 +1,5 @@
+import styles from "./MockLogInButton.module.css";
+
 const MockLogInButton = ({isLoggedIn, setIsLoggedIn}) => {
     
   function handleLoginClick(){
@@ -5,7 +7,7 @@ const MockLogInButton = ({isLoggedIn, setIsLoggedIn}) => {
   }
 
   return (
-    <button className="LogInBtn" onClick={handleLoginClick}>
+    <button className={styles.button} onClick={handleLoginClick}>
       {isLoggedIn ? "Logout" : "Login"}
     </button>
   )

@@ -1,4 +1,4 @@
-import Recipe from "../../components/Recipe";
+import Recipe from "../../components/Recipe/Recipe";
 import styles from "./FavoritesPage.module.css";
 
 const FavoritesPage = ({ favorites, toggleFavorite }) => {

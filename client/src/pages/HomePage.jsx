@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Recipe from "../components/Recipe";
-import SearchBar from "../components/SearchBar";
+import Recipe from "../components/Recipe/Recipe";
+import SearchBar from "../components/SearchBar/SearchBar";
 //import CategorySelect from "../components/CategorySelect/CategorySelect";
 import { getAll } from "../api/recipeApi";
-import FilterBar from "../components/FilterBar";
+import FilterBar from "../components/FilterBar/FilterBar";
+import styles from "./HomePage/HomePage.module.css";
+import recipeListStyles from "../components/RecipeList/RecipeList.module.css";
 
 const HomePage = ({ favorites, toggleFavorite }) => {
   const [recipes, setRecipes] = useState([]);
@@ -42,20 +44,20 @@ const HomePage = ({ favorites, toggleFavorite }) => {
   ];
 
   return (
-    <div className="home-page">
-      <section className="home-page__hero">
-        <img src="/hero.jpg" alt="" className="home-page__hero-image" />
+    <div className={styles.homePage}>
+      <section className={styles.hero}>
+        <img src="/hero.jpg" alt="" className={styles.heroImage} />
       </section>
 
-      <section className="home-page__controls">
+      <section className="controls">
         <SearchBar value={search} onChange={setSearch} />
         <FilterBar categories={allCategories} value = {category} onChange={setCategory} />
       </section>
 
-      <section className="home-page__list">
-        <h2 className="home-page__list-title">All of our Recipes</h2>
-        {error && <p className="error-message">{error}</p>}
-        <div className="recipe-list recipe-list--horizontal">
+      <section>
+        <h2 className={styles.listTitle}>All of our Recipes</h2>
+        {error && <p className={styles.errorMessage}>{error}</p>}
+        <div className={recipeListStyles.horizontal}>
           
           {filtered.slice(0, 6).map((recipe) => (
             <Recipe
@@ -70,8 +72,8 @@ const HomePage = ({ favorites, toggleFavorite }) => {
           ))}
         </div>
 
-          <div className="home-page__show-more">
-            <Link to="/recipes" className="button button--primary">
+          <div className={styles.showMore}>
+            <Link to="/recipes" className={styles.showMoreLink}>
               Show more recipes
             </Link>
           </div>

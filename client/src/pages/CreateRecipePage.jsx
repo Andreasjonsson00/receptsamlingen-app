@@ -1,4 +1,4 @@
-import CreateForm from "../components/RecipeForm"
+import CreateForm from "../components/RecipeForm/RecipeForm"
 import { useNavigate } from "react-router-dom";
 import { add } from "../api/recipeApi";
 
