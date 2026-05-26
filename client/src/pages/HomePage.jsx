@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Recipe from "../components/Recipe";
 import SearchBar from "../components/SearchBar";
+import CategorySelect from "../components/CategorySelect/CategorySelect";
 import { getAll } from "../api/recipeApi";
 
 const HomePage = ({ favorites, toggleFavorite }) => {
@@ -43,18 +44,11 @@ const HomePage = ({ favorites, toggleFavorite }) => {
     <div className="home-page">
       <section className="home-page__controls">
         <SearchBar value={search} onChange={setSearch} />
-        <select
-          className="category-select"
+        <CategorySelect
           value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option value="">All categories</option>
-          {allCategories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+          onChange={setCategory}
+          categories={allCategories}
+        />
       </section>
 
       <section className="home-page__hero">

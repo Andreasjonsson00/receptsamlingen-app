@@ -33,7 +33,7 @@ const getStoredFavorites = () => {
 
 function App() {
   const [favorites, setFavorites] = useState(getStoredFavorites);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
