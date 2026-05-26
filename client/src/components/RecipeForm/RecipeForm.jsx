@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
+import styles from "./RecipeForm.module.css";
 
 const RecipeForm = ({onSubmit}) => {
  
@@ -47,9 +48,10 @@ const RecipeForm = ({onSubmit}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor='title'>Add recipe title
+    <form className={styles.recipeForm} onSubmit={handleSubmit}>
+      <label className={styles.field} htmlFor='title'>Add recipe title
         <input
+          className={styles.input}
           type='text'
           name='title'
           value={formData.title}
@@ -60,8 +62,9 @@ const RecipeForm = ({onSubmit}) => {
       </label>
       <br />
 
-      <label htmlFor='description'>Add recipe description
+      <label className={styles.field} htmlFor='description'>Add recipe description
         <input
+          className={styles.input}
           type='text'
           name='description'
           value={formData.description}
@@ -72,14 +75,16 @@ const RecipeForm = ({onSubmit}) => {
 
       <label htmlFor='image'>Add recipe image</label>
       <input
+        className={styles.input}
         name='image'
         value={formData.image}
         onChange={handleChange}
       />
       <br />
 
-      <label htmlFor='ingredients'>Add recipe ingredients
+      <label className={styles.field} htmlFor='ingredients'>Add recipe ingredients
         <input
+          className={styles.input}
           type='text'
           name='ingredients'
           value={formData.ingredients.join(', ')}
@@ -90,8 +95,9 @@ const RecipeForm = ({onSubmit}) => {
       </label>
       <br />
 
-      <label htmlFor='instructions'>Add recipe instructions
+      <label className={styles.field} htmlFor='instructions'>Add recipe instructions
         <textarea
+          className={styles.textarea}
           name='instructions'
           value={formData.instructions.join('\n')}
           placeholder="Instructions (one instruction per line)"
@@ -102,6 +108,7 @@ const RecipeForm = ({onSubmit}) => {
 
       <label htmlFor='prep_time'>Add recipe preparation time</label>
       <input
+        className={styles.input}
         type='number' min={1}
         name='prep_time'
         value={formData.prep_time ?? ''}
@@ -112,6 +119,7 @@ const RecipeForm = ({onSubmit}) => {
 
       <label htmlFor='cook_time'>Add recipe cooking time</label>
       <input
+        className={styles.input}
         type='number' min={1}
         name='cook_time'
         value={formData.cook_time ?? ''}
@@ -122,6 +130,7 @@ const RecipeForm = ({onSubmit}) => {
 
       <label htmlFor='servings'>Add recipe servings</label>
       <input
+        className={styles.input}
         type='number' min={1}
         name='servings'
         value={formData.servings ?? ''}
@@ -156,11 +165,12 @@ const RecipeForm = ({onSubmit}) => {
       <label htmlFor='Quick30'>Quick (&lt;30 min)</label>
 
       <br />
-      <button type='submit'>Submit</button>
-      <Link to='/'><button>Cancel</button></Link>
+      <div className={styles.actions}>
+        <button className={styles.button} type='submit'>Submit</button>
+        <Link to='/'><button className={styles.button} type="button">Cancel</button></Link>
+      </div>
     </form>
   );
 };
 
 export default RecipeForm;
-

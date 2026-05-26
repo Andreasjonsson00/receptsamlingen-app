@@ -1,4 +1,4 @@
-import Recipe from "../../components/Recipe";
+import Recipe from "../../components/Recipe/Recipe";
 import styles from "./FavoritesPage.module.css";
 
 const FavoritesPage = ({ favorites, toggleFavorite }) => {
@@ -9,7 +9,7 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
           <h2 className={styles["favorites-page__list-title"]}>
             Your Favorite Recipes
           </h2>
-          <ul>
+          <ul className={styles.list}>
             {favorites.map((recipe) => (
               <Recipe
                 key={recipe.id}
