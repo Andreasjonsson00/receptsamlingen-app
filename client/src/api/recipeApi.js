@@ -42,7 +42,7 @@ export const update = async (id, data) => {
 
 export const remove=async(id)=>{
     try{
-        const res=await apiClient.delete(`/${id}`)
+        const res=await apiClient.delete(`recipes/${id}`)
         return res.data
     }
     catch(error){

@@ -29,7 +29,7 @@ const RecipeDetails = () => {
     try{
         if(!window.confirm('Are you sure you want to delete the recipe'))return;
         await remove(id);
-        alert('recipe deleted!')
+        alert('recipe deleted successfully!')
         navigate('/')
     }
     catch(err){
@@ -53,7 +53,7 @@ const RecipeDetails = () => {
     />
     <p>{recipe.description}</p>
     <p><strong>Ingredients:</strong> {recipe.ingredients.join(", ")}</p>
-    <p><strong>Instructions:</strong> {recipe.instructions?.join(' ')}.</p>
+    <p><strong>Instructions:</strong> {recipe.instructions?.join('. ')}.</p>
     <p><strong>Preparation Time:</strong> {recipe.prep_time} minutes</p>
     <p><strong>Cooking Time:</strong>{recipe.cook_time} minutes</p>
     <p><strong>Servings:</strong>{recipe.servings}</p>
