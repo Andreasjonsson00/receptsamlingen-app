@@ -21,7 +21,7 @@ const HomePage = ({ favorites, toggleFavorite }) => {
         
         const shuffled = [...data]
           .sort(() => Math.random() - 0.5)
-          .slice(0, 3);
+          .slice(0, 6);
         setRecipes(shuffled);
       } catch (err) {
         setError(err.message);
@@ -57,7 +57,7 @@ const HomePage = ({ favorites, toggleFavorite }) => {
         {error && <p className="error-message">{error}</p>}
         <div className="recipe-list recipe-list--horizontal">
           
-          {filtered.slice(0, 3).map((recipe) => (
+          {filtered.slice(0, 6).map((recipe) => (
             <Recipe
               key={recipe.id}
               recipe={recipe}
