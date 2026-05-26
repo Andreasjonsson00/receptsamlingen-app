@@ -1,8 +1,10 @@
+import styles from "./SearchBar.module.css";
+
 const SearchBar = ({ value, onChange }) => {
   return (
-    <div>
+    <div className={styles.searchBar}>
       <input
-        className="search-bar__input"
+        className={styles.input}
         type="text"
         placeholder="Search recipes..."
         value={value}

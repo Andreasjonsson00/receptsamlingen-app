@@ -1,4 +1,4 @@
-import RecipeList from "../components/RecipeList";
+import RecipeList from "../components/RecipeList/RecipeList";
 
 const RecipeListPage = ({ favorites, toggleFavorite }) => {
   return (
