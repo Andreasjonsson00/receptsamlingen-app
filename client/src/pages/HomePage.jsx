@@ -10,7 +10,7 @@ const HomePage = ({ favorites, toggleFavorite }) => {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
-  const [featured, setFeatured] = useState([]);
+  //const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -21,7 +21,7 @@ const HomePage = ({ favorites, toggleFavorite }) => {
         const shuffled = [...data]
           .sort(() => Math.random() - 0.5)
           .slice(0, 3);
-        setFeatured(shuffled);
+        setRecipes(shuffled);
       } catch (err) {
         setError(err.message);
       }
