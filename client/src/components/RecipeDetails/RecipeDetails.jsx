@@ -1,7 +1,8 @@
 import { useNavigate, useParams,} from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getById, remove} from "../api/recipeApi";
+import { getById, remove} from "../../api/recipeApi";
 import { Link } from "react-router-dom";
+import styles from "./RecipeDetails.module.css";
 
 const RecipeDetails = () => {
   const navigate=useNavigate()
@@ -40,26 +41,30 @@ const RecipeDetails = () => {
   }
 
   if (loading) return <p>Loading recipe...</p>;
-  if (error) return <p style={{color:"red"}}>Error: {error}</p>;
+  if (error) return <p className={styles.error}>Error: {error}</p>;
   if (!recipe) return <p>No recipe found.</p>;
 
   return (
-   <div>
-    <h3>{recipe.title}</h3>
+   <div className={styles.recipeDetail}>
+    <h3 className={styles.title}>{recipe.title}</h3>
     <img 
       src={recipe.image?recipe.image:'/recipe_placeholder.png'} 
       alt={recipe.title} 
-      width="250" 
+      className={styles.image}
     />
     <p>{recipe.description}</p>
     <p><strong>Ingredients:</strong> {recipe.ingredients.join(", ")}</p>
     <p><strong>Instructions:</strong> {recipe.instructions?.join('. ')}.</p>
-    <p><strong>Preparation Time:</strong> {recipe.prep_time} minutes</p>
-    <p><strong>Cooking Time:</strong>{recipe.cook_time} minutes</p>
-    <p><strong>Servings:</strong>{recipe.servings}</p>
-    <Link to='/recipes'>Back to recipes</Link>
-    <Link to={`/recipes/${id}/edit`}><button>Edit</button></Link>
-    <button onClick={handleDelete}>Delete</button>
+    <div className={styles.meta}>
+      <p><strong>Preparation Time:</strong> {recipe.prep_time} minutes</p>
+      <p><strong>Cooking Time:</strong>{recipe.cook_time} minutes</p>
+      <p><strong>Servings:</strong>{recipe.servings}</p>
+    </div>
+    <div className={styles.actions}>
+      <Link to='/recipes' className={styles.button}>Back to recipes</Link>
+      <Link to={`/recipes/${id}/edit`} className={styles.button}>Edit</Link>
+      <button className={`${styles.button} ${styles.danger}`} onClick={handleDelete}>Delete</button>
+    </div>
   </div>
   )
 }

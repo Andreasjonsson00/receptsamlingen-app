@@ -1,0 +1,61 @@
+.favoriteButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-favorite);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease, color 0.15s ease;
+}
+
+.favoriteButton:hover {
+  transform: scale(1.08);
+  border-color: var(--color-favorite);
+}
+
+.favoriteButton:active {
+  transform: scale(0.95);
+}
+
+.favoriteButton:focus-visible {
+  outline: 2px solid var(--color-favorite);
+  outline-offset: 2px;
+}
+
+.active {
+  background-color: var(--color-favorite);
+  border-color: var(--color-favorite);
+  color: var(--color-surface);
+  animation: favorite-pop 0.3s ease;
+}
+
+.active:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+.floating {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  box-shadow: var(--shadow-sm);
+  z-index: 1;
+}
+
+.favoriteButton svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+@keyframes favorite-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}

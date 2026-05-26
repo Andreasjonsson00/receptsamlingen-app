@@ -1,17 +1,16 @@
-import "./App.css";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //components
 import Navbar from "./components/Navbar";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 //pages
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import RecipeListPage from "./pages/RecipeListPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
-import CreateRecipePage from "./pages/CreateRecipePage";
+import CreateRecipePage from "./pages/CreateRecipePage/CreateRecipePage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 
 const FAVORITES_STORAGE_KEY = "favorites";

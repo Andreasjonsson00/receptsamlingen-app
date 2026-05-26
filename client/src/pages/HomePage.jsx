@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Recipe from "../components/Recipe";
 import SearchBar from "../components/SearchBar";
-
 import { getAll } from "../api/recipeApi";
 import FilterBar from "../components/FilterBar";
 
