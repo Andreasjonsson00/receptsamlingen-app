@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Recipe from "../components/Recipe";
 import SearchBar from "../components/SearchBar";
-//import CategorySelect from "../components/CategorySelect/CategorySelect";
+
 import { getAll } from "../api/recipeApi";
 import FilterBar from "../components/FilterBar";
 
@@ -11,7 +11,7 @@ const HomePage = ({ favorites, toggleFavorite }) => {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
-  //const [featured, setFeatured] = useState([]);
+ 
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -19,10 +19,6 @@ const HomePage = ({ favorites, toggleFavorite }) => {
         const data = await getAll();
         setRecipes(data);
         
-        const shuffled = [...data]
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 6);
-        setRecipes(shuffled);
       } catch (err) {
         setError(err.message);
       }
