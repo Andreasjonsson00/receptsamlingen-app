@@ -58,6 +58,24 @@
   text-transform: lowercase;
 }
 
+.compact .content {
+  padding: var(--space-sm);
+}
+
+.compact .title {
+  font-size: 1rem;
+}
+
+.compact .description {
+  font-size: 0.8rem;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+
+.compact .category {
+  font-size: 0.75rem;
+}
+
 .horizontal {
   display: grid;
   grid-template-columns: 280px 1fr;

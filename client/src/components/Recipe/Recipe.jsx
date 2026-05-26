@@ -2,10 +2,20 @@ import { Link } from "react-router-dom";
 import FavoriteButton from "../ToggleFavoriteButton/ToggleFavoriteButton";
 import styles from "./Recipe.module.css";
    
-const Recipe = ({ recipe, isFavorite, toggleFavorite, horizontal = false }) => {
-  const itemClass = horizontal
-    ? `${styles.item} ${styles.horizontal}`
-    : styles.item;
+const Recipe = ({
+  recipe,
+  isFavorite,
+  toggleFavorite,
+  horizontal = false,
+  compact = false,
+}) => {
+  const itemClass = [
+    styles.item,
+    horizontal ? styles.horizontal : "",
+    compact ? styles.compact : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
      return (
        <article className={itemClass}>

@@ -9,7 +9,7 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
           <h2 className={styles["favorites-page__list-title"]}>
             Your Favorite Recipes
           </h2>
-          <ul>
+          <ul className={styles.list}>
             {favorites.map((recipe) => (
               <Recipe
                 key={recipe.id}

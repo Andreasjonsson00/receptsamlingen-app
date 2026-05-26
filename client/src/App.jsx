@@ -7,7 +7,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
 //pages
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import RecipeListPage from "./pages/RecipeListPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import CreateRecipePage from "./pages/CreateRecipePage/CreateRecipePage";
