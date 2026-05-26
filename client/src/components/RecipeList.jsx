@@ -24,7 +24,7 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
       }
     };
     fetchRecipes()
-  }, []);
+}, []);
 
   // Filter recipes based on the search query
   // Converts both to lowercase so "Fish" matches "fish"

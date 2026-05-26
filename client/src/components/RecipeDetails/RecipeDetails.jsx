@@ -48,7 +48,7 @@ const RecipeDetails = () => {
    <div className={styles.recipeDetail}>
     <h3 className={styles.title}>{recipe.title}</h3>
     <img 
-      src={recipe.image?recipe.image:'/default.png'} 
+      src={recipe.image?recipe.image:'/recipe_placeholder.png'} 
       alt={recipe.title} 
       className={styles.image}
     />
