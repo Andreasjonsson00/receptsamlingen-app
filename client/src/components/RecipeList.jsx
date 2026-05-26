@@ -20,7 +20,7 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
         const data = await getAll();
 
         //Debug log
-        console.log(recipes)
+    
         
         setRecipes(data)
       } catch (err) {
@@ -28,7 +28,7 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
       }
     };
     fetchRecipes()
-  }, []);
+}, []);
 
   // Filter recipes based on the search query
   // Converts both to lowercase so "Fish" matches "fish"
