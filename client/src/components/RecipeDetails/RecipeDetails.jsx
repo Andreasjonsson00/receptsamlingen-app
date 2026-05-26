@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getById, remove } from "../../api/recipeApi";
-import styles from "./RecipeDetails.module.css";
 import { translateCategory } from "../../constants/categories";
+import styles from "./RecipeDetails.module.css";
 
 const RecipeDetails = () => {
   const { t } = useTranslation();
@@ -43,9 +43,13 @@ const RecipeDetails = () => {
   if (error) return <p className={styles.error}>{t("errors.fetchFailed")}</p>;
   if (!recipe) return <p>{t("pages.recipeNotFound")}</p>;
 
+  const contentLang = recipe.language || "sv";
+
   return (
     <div className={styles.recipeDetail}>
-      <h3 className={styles.title}>{recipe.title}</h3>
+      <h3 className={styles.title} lang={contentLang}>
+        {recipe.title}
+      </h3>
       <img
         src={recipe.image ? recipe.image : "/recipe_placeholder.png"}
         alt={
@@ -55,15 +59,15 @@ const RecipeDetails = () => {
         }
         className={styles.image}
       />
-      <p>{recipe.description}</p>
+      <p lang={contentLang}>{recipe.description}</p>
 
       <p>
         <strong>{t("recipe.ingredients")}:</strong>{" "}
-        {recipe.ingredients.join(", ")}
+        <span lang={contentLang}>{recipe.ingredients.join(", ")}</span>
       </p>
       <p>
         <strong>{t("recipe.instructions")}:</strong>{" "}
-        {recipe.instructions?.join(". ")}.
+        <span lang={contentLang}>{recipe.instructions?.join(". ")}.</span>
       </p>
 
       {recipe.category_name?.filter(Boolean).length > 0 && (

@@ -47,7 +47,10 @@
     "servings": "Servings",
     "categories": "Categories",
     "submit": "Submit",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "recipeLanguage": "Recipe language",
+    "languageSv": "Swedish",
+    "languageEn": "English"
   },
   "categories": {
     "mainCourse": "Main Course",

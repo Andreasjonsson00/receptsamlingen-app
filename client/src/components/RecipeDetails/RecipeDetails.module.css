@@ -1,12 +1,17 @@
 .recipeDetail {
   display: grid;
   gap: var(--space-lg);
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
 }
 
 .image {
   width: 100%;
   max-width: 640px;
   aspect-ratio: 16 / 9;
+  display: block;
+  margin: 0 auto;
   object-fit: cover;
   border-radius: var(--radius-md);
   background-color: var(--color-surface-alt);

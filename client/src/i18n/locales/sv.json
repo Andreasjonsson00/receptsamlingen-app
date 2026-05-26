@@ -47,7 +47,10 @@
     "servings": "Portioner",
     "categories": "Kategorier",
     "submit": "Spara",
-    "cancel": "Avbryt"
+    "cancel": "Avbryt",
+    "recipeLanguage": "Receptets språk",
+    "languageSv": "Svenska",
+    "languageEn": "Engelska"
   },
   "categories": {
     "mainCourse": "Huvudrätt",
