@@ -1,39 +1,42 @@
-import { useState } from "react"
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./RecipeForm.module.css";
 
-const RecipeForm = ({onSubmit}) => {
- 
+const CATEGORIES = [
+  { id: "MainCourse", name: "Main Course" },
+  { id: "Starter", name: "Starter" },
+  { id: "Dessert", name: "Dessert" },
+  { id: "Vegetarian", name: "Vegetarian" },
+  { id: "Quick30", name: "Quick (<30 min)" },
+];
+
+const RecipeForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    image: '',
+    title: "",
+    description: "",
+    image: "",
     ingredients: [],
     instructions: [],
     prep_time: null,
     cook_time: null,
     servings: null,
-    category: []
+    category: [],
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-
     setFormData((prev) => {
-      if (type === 'checkbox') {
-        if (checked) {
-          return { ...prev, category: [...prev.category, name] };
-        } else {
-          return { ...prev, category: prev.category.filter(c => c !== name) };
-        }
+      if (type === "checkbox") {
+        if (checked) return { ...prev, category: [...prev.category, name] };
+        return { ...prev, category: prev.category.filter((c) => c !== name) };
       }
-      if (name === 'ingredients') {
-        return { ...prev, ingredients: value.split(',').map(i => i.trim()) };
+      if (name === "ingredients") {
+        return { ...prev, ingredients: value.split(",").map((i) => i.trim()) };
       }
-      if (name === 'instructions') {
-        return { ...prev, instructions: value.split('\n')};
+      if (name === "instructions") {
+        return { ...prev, instructions: value.split("\n") };
       }
-      if (type === 'number') {
+      if (type === "number") {
         return { ...prev, [name]: value ? parseInt(value, 10) : null };
       }
       return { ...prev, [name]: value };
@@ -42,132 +45,140 @@ const RecipeForm = ({onSubmit}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    onSubmit(formData)
-   
+    onSubmit(formData);
   };
 
   return (
     <form className={styles.recipeForm} onSubmit={handleSubmit}>
-      <label className={styles.field} htmlFor='title'>Add recipe title
+      <h2 className={styles.title}>Add a recipe</h2>
+
+      <div className={styles.field}>
+        <label htmlFor="title" className={styles.label}>Title</label>
         <input
+          id="title"
+          type="text"
+          name="title"
           className={styles.input}
-          type='text'
-          name='title'
           value={formData.title}
           onChange={handleChange}
-          placeholder="Title"
+          placeholder="e.g. Spaghetti Carbonara"
           required
         />
-      </label>
-      <br />
+      </div>
 
-      <label className={styles.field} htmlFor='description'>Add recipe description
+      <div className={styles.field}>
+        <label htmlFor="description" className={styles.label}>Description</label>
         <input
+          id="description"
+          type="text"
+          name="description"
           className={styles.input}
-          type='text'
-          name='description'
           value={formData.description}
           onChange={handleChange}
+          placeholder="Short description"
         />
-      </label>
-      <br />
+      </div>
 
-      <label htmlFor='image'>Add recipe image</label>
-      <input
-        className={styles.input}
-        name='image'
-        value={formData.image}
-        onChange={handleChange}
-      />
-      <br />
-
-      <label className={styles.field} htmlFor='ingredients'>Add recipe ingredients
+      <div className={styles.field}>
+        <label htmlFor="image" className={styles.label}>Image URL</label>
         <input
+          id="image"
+          name="image"
           className={styles.input}
-          type='text'
-          name='ingredients'
-          value={formData.ingredients.join(', ')}
+          value={formData.image}
+          onChange={handleChange}
+          placeholder="https://..."
+        />
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor="ingredients" className={styles.label}>Ingredients</label>
+        <input
+          id="ingredients"
+          type="text"
+          name="ingredients"
+          className={styles.input}
+          value={formData.ingredients.join(", ")}
           placeholder="Ingredients (comma separated)"
           onChange={handleChange}
           required
         />
-      </label>
-      <br />
+      </div>
 
-      <label className={styles.field} htmlFor='instructions'>Add recipe instructions
+      <div className={styles.field}>
+        <label htmlFor="instructions" className={styles.label}>Instructions</label>
         <textarea
+          id="instructions"
+          name="instructions"
           className={styles.textarea}
-          name='instructions'
-          value={formData.instructions.join('\n')}
-          placeholder="Instructions (one instruction per line)"
+          value={formData.instructions.join("\n")}
+          placeholder="One instruction per line"
           onChange={handleChange}
         />
-      </label>
-      <br />
+      </div>
 
-      <label htmlFor='prep_time'>Add recipe preparation time</label>
-      <input
-        className={styles.input}
-        type='number' min={1}
-        name='prep_time'
-        value={formData.prep_time ?? ''}
-        placeholder="Preparation time in minutes"
-        onChange={handleChange}
-      />
-      <br />
+      <div className={styles.row}>
+        <div className={styles.field}>
+          <label htmlFor="prep_time" className={styles.label}>Prep time (min)</label>
+          <input
+            id="prep_time"
+            type="number"
+            min={1}
+            name="prep_time"
+            className={styles.input}
+            value={formData.prep_time ?? ""}
+            onChange={handleChange}
+          />
+        </div>
 
-      <label htmlFor='cook_time'>Add recipe cooking time</label>
-      <input
-        className={styles.input}
-        type='number' min={1}
-        name='cook_time'
-        value={formData.cook_time ?? ''}
-        placeholder="Cooking time in minutes"
-        onChange={handleChange}
-      />
-      <br />
+        <div className={styles.field}>
+          <label htmlFor="cook_time" className={styles.label}>Cook time (min)</label>
+          <input
+            id="cook_time"
+            type="number"
+            min={1}
+            name="cook_time"
+            className={styles.input}
+            value={formData.cook_time ?? ""}
+            onChange={handleChange}
+          />
+        </div>
 
-      <label htmlFor='servings'>Add recipe servings</label>
-      <input
-        className={styles.input}
-        type='number' min={1}
-        name='servings'
-        value={formData.servings ?? ''}
-        onChange={handleChange}
-      />
-      <br />
+        <div className={styles.field}>
+          <label htmlFor="servings" className={styles.label}>Servings</label>
+          <input
+            id="servings"
+            type="number"
+            min={1}
+            name="servings"
+            className={styles.input}
+            value={formData.servings ?? ""}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
 
-      <span>Add recipe category</span><br />
-      <input type="checkbox" id='MainCourse' name='Main Course'
-        checked={formData.category.includes('Main Course')}
-        onChange={handleChange} />
-      <label htmlFor='MainCourse'>Main Course</label>
+      <fieldset className={styles.categories}>
+        <legend className={styles.label}>Categories</legend>
+        <div className={styles.checkboxGroup}>
+          {CATEGORIES.map((cat) => (
+            <label key={cat.id} className={styles.checkbox}>
+              <input
+                type="checkbox"
+                id={cat.id}
+                name={cat.name}
+                checked={formData.category.includes(cat.name)}
+                onChange={handleChange}
+              />
+              <span>{cat.name}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
 
-      <input type="checkbox" id='Starter' name='Starter'
-        checked={formData.category.includes('Starter')}
-        onChange={handleChange} />
-      <label htmlFor='Starter'>Starter</label>
-
-      <input type="checkbox" id='Dessert' name='Dessert'
-        checked={formData.category.includes('Dessert')}
-        onChange={handleChange} />
-      <label htmlFor='Dessert'>Dessert</label>
-
-      <input type="checkbox" id='Vegetarian' name='Vegetarian'
-        checked={formData.category.includes('Vegetarian')}
-        onChange={handleChange} />
-      <label htmlFor='Vegetarian'>Vegetarian</label>
-
-      <input type="checkbox" id='Quick30' name='Quick (<30 min)'
-        checked={formData.category.includes('Quick (<30 min)')}
-        onChange={handleChange} />
-      <label htmlFor='Quick30'>Quick (&lt;30 min)</label>
-
-      <br />
       <div className={styles.actions}>
-        <button className={styles.button} type='submit'>Submit</button>
-        <Link to='/'><button className={styles.button} type="button">Cancel</button></Link>
+        <button type="submit" className="button button--primary">Submit</button>
+        <Link to="/" className="button button--secondary">Cancel</Link>
       </div>
     </form>
   );
