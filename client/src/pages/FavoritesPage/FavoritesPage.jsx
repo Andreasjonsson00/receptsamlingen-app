@@ -41,7 +41,11 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
       {favorites.length > 0 ? (
         <>
           <h2 className={styles["favorites-page__list-title"]}>
+<<<<<<< HEAD
             {t("pages.favoritesTitle")}
+=======
+            Your Favorite Recipes
+>>>>>>> 5f97962f7595536e19fd9a382423825f75f99aec
           </h2>
       <ul className={styles.list}>
         {filteredRecipes.map((recipe) => (
@@ -55,7 +59,13 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
       </ul>
         </>
       ) : (
+<<<<<<< HEAD
         <h2>{t("pages.favoritesEmpty")}</h2>
+=======
+        <h2>
+          You have no favorite recipes yet. Try adding some!
+        </h2>
+>>>>>>> 5f97962f7595536e19fd9a382423825f75f99aec
       )}
     </>
   );

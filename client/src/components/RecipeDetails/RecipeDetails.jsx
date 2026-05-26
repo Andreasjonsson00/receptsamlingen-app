@@ -44,6 +44,7 @@ const RecipeDetails = () => {
   if (!recipe) return <p>{t("pages.recipeNotFound")}</p>;
 
   return (
+<<<<<<< HEAD
     <div className={styles.recipeDetail}>
       <h3 className={styles.title}>{recipe.title}</h3>
       <img
@@ -56,6 +57,31 @@ const RecipeDetails = () => {
         className={styles.image}
       />
       <p>{recipe.description}</p>
+=======
+   <div className={styles.recipeDetail}>
+    <h3 className={styles.title}>{recipe.title}</h3>
+    <img 
+      src={recipe.image?recipe.image:'/recipe_placeholder.png'} 
+      alt={recipe.title} 
+      className={styles.image}
+    />
+    <p>{recipe.description}</p>
+    <p><strong>Ingredients:</strong> {recipe.ingredients.join(", ")}</p>
+    <p><strong>Instructions:</strong> {recipe.instructions?.join('. ')}.</p>
+    <div className={styles.meta}>
+      <p><strong>Preparation Time:</strong> {recipe.prep_time} minutes</p>
+      <p><strong>Cooking Time:</strong>{recipe.cook_time} minutes</p>
+      <p><strong>Servings:</strong>{recipe.servings}</p>
+    </div>
+    <div className={styles.actions}>
+      <Link to='/recipes' className={styles.button}>Back to recipes</Link>
+      <Link to={`/recipes/${id}/edit`} className={styles.button}>Edit</Link>
+      <button className={`${styles.button} ${styles.danger}`} onClick={handleDelete}>Delete</button>
+    </div>
+  </div>
+  )
+}
+>>>>>>> 5f97962f7595536e19fd9a382423825f75f99aec
 
       <p>
         <strong>{t("recipe.ingredients")}:</strong>{" "}
