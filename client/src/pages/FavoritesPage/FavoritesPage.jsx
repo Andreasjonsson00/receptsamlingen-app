@@ -35,7 +35,13 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
           onChange={setSelectedCategory}
         />
       </section>
-      <ul className={styles.favoritesList}>
+
+      {favorites.length > 0 ? (
+        <>
+          <h2 className={styles["favorites-page__list-title"]}>
+            Your Favorite Recipes
+          </h2>
+      <ul className={styles.list}>
         {filteredRecipes.map((recipe) => (
           <Recipe
             key={recipe.id}
@@ -45,24 +51,11 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
           />
         ))}
       </ul>
-      {favorites.length > 0 ? (
-        <>
-          <h2 className={styles["favorites-page__list-title"]}>
-            Your Favorite Recipes
-          </h2>
-          <ul className={styles.list}>
-            {favorites.map((recipe) => (
-              <Recipe
-                key={recipe.id}
-                recipe={recipe}
-                isFavorite={true}
-                toggleFavorite={toggleFavorite}
-              />
-            ))}
-          </ul>
         </>
       ) : (
-        <p>You have no favorite recipes yet. Try adding some!</p>
+        <h2>
+          You have no favorite recipes yet. Try adding some!
+        </h2>
       )}
     </>
   );
