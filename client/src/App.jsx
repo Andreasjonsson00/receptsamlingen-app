@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 import HomePage from "./pages/HomePage";
 import RecipeListPage from "./pages/RecipeListPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
-import CreateRecipePage from "./pages/CreateRecipePage";
+import CreateRecipePage from "./pages/CreateRecipePage/CreateRecipePage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 
 const FAVORITES_STORAGE_KEY = "favorites";

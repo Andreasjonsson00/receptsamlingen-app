@@ -1,0 +1,9 @@
+.page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.formWrap {
+  width: min(100%, 600px);
+}
