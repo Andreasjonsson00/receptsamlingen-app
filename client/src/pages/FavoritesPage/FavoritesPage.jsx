@@ -30,7 +30,6 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
     <>
       <section className="controls">
         <SearchBar value={search} onChange={setSearch} />
-
         <FilterBar
           categories={allCategories}
           value={category}
