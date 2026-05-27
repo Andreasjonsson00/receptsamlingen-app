@@ -3,9 +3,9 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getById, remove } from "../../api/recipeApi";
 import { translateCategory } from "../../constants/categories";
-import styles from "./RecipeDetails.module.css";
+import styles from "./RecipeDetailsPage.module.css";
 
-const RecipeDetails = () => {
+const RecipeDetailsPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -112,4 +112,4 @@ const RecipeDetails = () => {
   );
 };
 
-export default RecipeDetails;
+export default RecipeDetailsPage;

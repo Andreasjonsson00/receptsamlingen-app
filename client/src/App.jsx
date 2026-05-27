@@ -8,10 +8,10 @@ import Footer from "./components/Footer/Footer";
 
 //pages
 import HomePage from "./pages/HomePage/HomePage";
-import RecipeListPage from "./pages/RecipeListPage";
+import RecipeListPage from "./pages/RecipeListPage/RecipeListPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import CreateRecipePage from "./pages/CreateRecipePage/CreateRecipePage";
-import RecipeDetailsPage from "./pages/RecipeDetailsPage";
+import RecipeDetailsPage from "./pages/RecipeDetailsPage/RecipeDetailsPage";
 
 const FAVORITES_STORAGE_KEY = "favorites";
 
@@ -84,7 +84,7 @@ function App() {
                 />
               }
             />
-            <Route path="recipes/:id" element={<RecipeDetailsPage />} />
+            <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
             <Route path="/create" element={<CreateRecipePage />} />
           </Routes>
         </main>

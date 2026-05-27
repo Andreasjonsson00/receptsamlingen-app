@@ -6,7 +6,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import FilterBar from "../../components/FilterBar/FilterBar";
 import { getAll } from "../../api/recipeApi";
 import styles from "./HomePage.module.css";
-import recipeListStyles from "../../components/RecipeList/RecipeList.module.css";
+import recipeListStyles from "../RecipeListPage/RecipeListPage.module.css";
 
 const HomePage = ({ favorites, toggleFavorite }) => {
   const { t } = useTranslation();
