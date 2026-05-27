@@ -15,7 +15,7 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
   const [category, setCategory] = useState("");
 
   useEffect(() => {
-    const fetchRecipes = async () => {
+    const fetchAllRecipes = async () => {
       try {
         const data = await getAll();
         setRecipes(data);
@@ -25,7 +25,7 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
         setLoading(false);
       }
     };
-    fetchRecipes();
+    fetchAllRecipes();
   }, []);
 
   const filteredRecipes = recipes.filter((recipe) => {
