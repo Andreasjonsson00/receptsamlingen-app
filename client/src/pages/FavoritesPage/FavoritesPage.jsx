@@ -7,17 +7,17 @@ import styles from "./FavoritesPage.module.css";
 
 const FavoritesPage = ({ favorites, toggleFavorite }) => {
   const { t } = useTranslation();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
 
   const filteredRecipes = favorites.filter((recipe) => {
     const matchesSearch = recipe.title
       .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+      .includes(search.toLowerCase());
 
     const matchesCategory =
-      selectedCategory === "" ||
-      recipe.category_name?.includes(selectedCategory);
+      category === "" ||
+      recipe.category_name?.includes(category);
 
     return matchesSearch && matchesCategory;
   });
@@ -29,12 +29,12 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
   return (
     <>
       <section className="controls">
-        <SearchBar value={searchQuery} onChange={setSearchQuery} />
+        <SearchBar value={search} onChange={setSearch} />
 
         <FilterBar
           categories={allCategories}
-          value={selectedCategory}
-          onChange={setSelectedCategory}
+          value={category}
+          onChange={setCategory}
         />
       </section>
 

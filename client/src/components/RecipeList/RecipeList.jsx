@@ -11,8 +11,8 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [recipes, setRecipes] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -31,10 +31,10 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
   const filteredRecipes = recipes.filter((recipe) => {
     const matchesSearch = recipe.title
       .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+      .includes(search.toLowerCase());
     const matchesCategory =
-      selectedCategory === "" ||
-      recipe.category_name?.includes(selectedCategory);
+      category === "" ||
+      recipe.category_name?.includes(category);
     return matchesSearch && matchesCategory;
   });
 
@@ -43,17 +43,16 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
   ];
 
   if (error) return <p>{t("errors.fetchFailed")}</p>;
-
   if (loading) return <p>{t("loading")}</p>;
 
   return (
     <div>
       <section className="controls">
-        <SearchBar value={searchQuery} onChange={setSearchQuery} />
+        <SearchBar value={search} onChange={setSearch} />
         <FilterBar
           categories={allCategories}
-          value={selectedCategory}
-          onChange={setSelectedCategory}
+          value={category}
+          onChange={setCategory}
         />
       </section>
       <ul className={styles.recipeList}>
