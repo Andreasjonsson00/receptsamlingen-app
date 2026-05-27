@@ -8,8 +8,9 @@ import styles from "./RecipeList.module.css";
 
 const RecipeList = ({ favorites = [], toggleFavorite }) => {
   const { t } = useTranslation();
-  const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [recipes, setRecipes] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -20,6 +21,8 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
         setRecipes(data);
       } catch (err) {
         setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
     fetchRecipes();
@@ -40,6 +43,8 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
   ];
 
   if (error) return <p>{t("errors.fetchFailed")}</p>;
+
+  if (loading) return <p>{t("loading")}</p>;
 
   return (
     <div>

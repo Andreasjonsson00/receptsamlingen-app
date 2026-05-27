@@ -10,8 +10,9 @@ import recipeListStyles from "../../components/RecipeList/RecipeList.module.css"
 
 const HomePage = ({ favorites, toggleFavorite }) => {
   const { t } = useTranslation();
-  const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
 
@@ -25,6 +26,8 @@ const HomePage = ({ favorites, toggleFavorite }) => {
         setRecipes(shuffled);
       } catch (err) {
         setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
     fetchRecipes();
@@ -40,6 +43,9 @@ const HomePage = ({ favorites, toggleFavorite }) => {
   const allCategories = [
     ...new Set(recipes.flatMap((r) => r.category_name || [])),
   ];
+
+  if (error) return <p>{t("errors.fetchFailed")}</p>;
+  if (loading) return <p>{t("loading")}</p>;
 
   return (
     <div className={styles.homePage}>
@@ -58,8 +64,6 @@ const HomePage = ({ favorites, toggleFavorite }) => {
 
       <section>
         <h2 className={styles.listTitle}>{t("home.allRecipes")}</h2>
-        {error && <p className={styles.errorMessage}>{t("errors.fetchFailed")}</p>}
-
         <div className={recipeListStyles.horizontal}>
           {filtered.slice(0, 6).map((recipe) => (
             <Recipe
