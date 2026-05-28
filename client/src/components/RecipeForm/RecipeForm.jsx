@@ -46,7 +46,7 @@ const RecipeForm = ({ onSubmit,initialData }) => {
 
   return (
     <form className={styles.recipeForm} onSubmit={handleSubmit}>
-      <h2 className={styles.title}>{t("form.addRecipe")}</h2>
+      <h2 className={styles.title}>{initialData? t("form.editRecipe"):t("form.addRecipe")}</h2>
 
       <div className={styles.field}>
         <label htmlFor="title" className={styles.label}>
