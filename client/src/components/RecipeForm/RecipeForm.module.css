@@ -118,6 +118,11 @@
   cursor: pointer;
 }
 
+.saveButton:hover {
+  background-color: var(--color-primary-hover);
+}
+
+
 .deleteButton {
   display: inline-flex;
   align-items: center;
@@ -134,3 +139,6 @@
   text-decoration: none;
 }
 
+.deleteButton:hover {
+  background-color: var(--color-danger-hover);
+}
