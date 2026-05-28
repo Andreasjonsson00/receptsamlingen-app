@@ -74,7 +74,7 @@
 }
 
 .danger:hover {
-  background-color: #7a2424;
+  background-color: var(--color-danger-hover);
 }
 
 .error {

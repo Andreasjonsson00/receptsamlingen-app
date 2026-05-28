@@ -206,10 +206,10 @@ const RecipeForm = ({ onSubmit }) => {
       </fieldset>
 
       <div className={styles.actions}>
-        <button type="submit" className="button button--primary">
+        <button type="submit" className={styles.saveButton}>
           {t("form.submit")}
         </button>
-        <Link to="/" className="button button--secondary">
+        <Link to="/" className={styles.deleteButton}>
           {t("form.cancel")}
         </Link>
       </div>
