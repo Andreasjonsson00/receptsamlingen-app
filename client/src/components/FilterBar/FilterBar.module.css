@@ -1,5 +1,6 @@
 .filterBar {
   display: flex;
+  margin-bottom: var(--space-lg);
 }
 
 .categorySelect {
@@ -12,6 +13,7 @@
   font-size: 0.95rem;
   min-width: 200px;
   cursor: pointer;
+  color: var(--color-text-muted);
 }
 
 .categorySelect:focus {

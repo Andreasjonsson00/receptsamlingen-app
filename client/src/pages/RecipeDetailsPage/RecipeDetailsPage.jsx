@@ -3,9 +3,9 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getById, remove } from "../../api/recipeApi";
 import { translateCategory } from "../../constants/categories";
-import styles from "./RecipeDetails.module.css";
+import styles from "./RecipeDetailsPage.module.css";
 
-const RecipeDetails = () => {
+const RecipeDetailsPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -39,7 +39,14 @@ const RecipeDetails = () => {
     }
   };
 
-  if (loading) return <p>{t("recipe.loading")}</p>;
+  if (error) return <p>{t("errors.fetchFailed")}</p>;
+  if (loading) {
+    return (
+      <div className="spinnerContainer">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
   if (error) return <p className={styles.error}>{t("errors.fetchFailed")}</p>;
   if (!recipe) return <p>{t("pages.recipeNotFound")}</p>;
 
@@ -59,35 +66,38 @@ const RecipeDetails = () => {
         }
         className={styles.image}
       />
-      <p lang={contentLang}>{recipe.description}</p>
-
-      <p>
-        <strong>{t("recipe.ingredients")}:</strong>{" "}
-        <span lang={contentLang}>{recipe.ingredients.join(", ")}</span>
-      </p>
-      <p>
-        <strong>{t("recipe.instructions")}:</strong>{" "}
-        <span lang={contentLang}>{recipe.instructions?.join(". ")}.</span>
-      </p>
-
-      {recipe.category_name?.filter(Boolean).length > 0 && (
-        <p>
-          <strong>{t("form.categories")}:</strong>{" "}
-          {recipe.category_name
-            .filter(Boolean)
-            .map((c) => translateCategory(t, c))
-            .join(", ")}
+      <div>
+        <p className={styles.description} lang={contentLang}>
+          {recipe.description}
         </p>
-      )}
 
+        <p>
+          <strong>{t("recipe.ingredients")}:</strong>{" "}
+          <span lang={contentLang}>{recipe.ingredients.join(", ")}</span>
+        </p>
+        <p>
+          <strong>{t("recipe.instructions")}:</strong>{" "}
+          <span lang={contentLang}>{recipe.instructions?.join(". ")}.</span>
+        </p>
+
+        {recipe.category_name?.filter(Boolean).length > 0 && (
+          <p>
+            <strong>{t("form.categories")}:</strong>{" "}
+            {recipe.category_name
+              .filter(Boolean)
+              .map((c) => translateCategory(t, c))
+              .join(", ")}
+          </p>
+        )}
+      </div>
       <div className={styles.meta}>
         <p>
-          <strong>{t("recipe.prepTime")}:</strong>{" "}
-          {recipe.prep_time} {t("recipe.minutes")}
+          <strong>{t("recipe.prepTime")}:</strong> {recipe.prep_time}{" "}
+          {t("recipe.minutes")}
         </p>
         <p>
-          <strong>{t("recipe.cookTime")}:</strong>{" "}
-          {recipe.cook_time} {t("recipe.minutes")}
+          <strong>{t("recipe.cookTime")}:</strong> {recipe.cook_time}{" "}
+          {t("recipe.minutes")}
         </p>
         <p>
           <strong>{t("recipe.servings")}:</strong> {recipe.servings}
@@ -112,4 +122,4 @@ const RecipeDetails = () => {
   );
 };
 
-export default RecipeDetails;
+export default RecipeDetailsPage;

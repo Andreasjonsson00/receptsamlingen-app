@@ -12,12 +12,11 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
 
   const filteredRecipes = favorites.filter((recipe) => {
     const matchesSearch = recipe.title
-      .toLowerCase()
+      ?.toLowerCase()
       .includes(search.toLowerCase());
 
     const matchesCategory =
-      category === "" ||
-      recipe.category_name?.includes(category);
+      category === "" || recipe.category_name?.includes(category);
 
     return matchesSearch && matchesCategory;
   });
@@ -37,24 +36,27 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
         />
       </section>
 
-      {favorites.length > 0 ? (
+      {filteredRecipes.length === 0 ? (
+        <h2>{t("pages.favoritesEmpty")}</h2>
+      ) : (
         <>
-          <h2 className={styles["favorites-page__list-title"]}>
+          <h2 className={styles.favoritesPageListTitle}>
             {t("pages.favoritesTitle")}
           </h2>
-      <ul className={styles.list}>
-        {filteredRecipes.map((recipe) => (
-          <Recipe
-            key={recipe.id}
-            recipe={recipe}
-            isFavorite={favorites.some((favorite) => favorite.id === recipe.id)}
-            toggleFavorite={toggleFavorite}
-          />
-        ))}
-      </ul>
+
+          <ul className={styles.list}>
+            {filteredRecipes.map((recipe) => (
+              <Recipe
+                key={recipe.id}
+                recipe={recipe}
+                isFavorite={favorites.some(
+                  (favorite) => favorite.id === recipe.id,
+                )}
+                toggleFavorite={toggleFavorite}
+              />
+            ))}
+          </ul>
         </>
-      ) : (
-        <h2>{t("pages.favoritesEmpty")}</h2>
       )}
     </>
   );

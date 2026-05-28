@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { getAll } from "../../api/recipeApi";
-import Recipe from "../Recipe/Recipe";
-import SearchBar from "../SearchBar/SearchBar";
-import FilterBar from "../FilterBar/FilterBar";
-import styles from "./RecipeList.module.css";
+import Recipe from "../../components/Recipe/Recipe";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import FilterBar from "../../components/FilterBar/FilterBar";
+import styles from "./RecipeListPage.module.css";
 
-const RecipeList = ({ favorites = [], toggleFavorite }) => {
+const RecipeListPage = ({ favorites = [], toggleFavorite }) => {
   const { t } = useTranslation();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -43,7 +43,13 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
   ];
 
   if (error) return <p>{t("errors.fetchFailed")}</p>;
-  if (loading) return <p>{t("loading")}</p>;
+  if (loading) {
+    return (
+      <div className="spinnerContainer">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -69,4 +75,4 @@ const RecipeList = ({ favorites = [], toggleFavorite }) => {
   );
 };
 
-export default RecipeList;
+export default RecipeListPage;

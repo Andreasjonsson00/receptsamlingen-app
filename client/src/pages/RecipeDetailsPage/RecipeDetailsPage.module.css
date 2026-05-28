@@ -25,6 +25,13 @@
   margin: 0;
 }
 
+.description {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 600;
+  margin-top: var(--space-sm);
+}
+
 .meta {
   display: flex;
   gap: var(--space-lg);
