@@ -12,7 +12,7 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
 
   const filteredRecipes = favorites.filter((recipe) => {
     const matchesSearch = recipe.title
-      .toLowerCase()
+      ?.toLowerCase()
       .includes(search.toLowerCase());
 
     const matchesCategory =
