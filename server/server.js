@@ -121,6 +121,62 @@ app.delete('/recipes/:id',async(req,res)=>{
     }
 })
 
+app.put('/recipes/:id/edit', async (req, res) => {
+  const { id } = req.params;
+  const {
+    description,
+    image,
+    ingredients,
+    instructions,
+    prep_time,
+    cook_time,
+    servings,
+    category
+  } = req.body;
+
+  console.log('received:', req.body);
+
+  try {
+    // Uppdatera receptet
+    const recipeResult = await pool.query(
+      `UPDATE recipes
+       SET description=$1, image=$2, ingredients=$3, instructions=$4,
+           prep_time=$5, cook_time=$6, servings=$7
+       WHERE id=$8
+       RETURNING id;`,
+      [description, image, ingredients, instructions, prep_time, cook_time, servings, id]
+    );
+
+    const recipeId = recipeResult.rows[0].id;
+
+    // Ta bort gamla kategorier först (om du vill uppdatera helt)
+    await pool.query(`DELETE FROM recipes_categories WHERE recipe_id=$1;`, [recipeId]);
+
+    // Lägg till nya kategorier
+    for (const catName of category) {
+      const catResult = await pool.query(
+        `SELECT id FROM categories WHERE name = $1;`,
+        [catName.trim()]
+      );
+
+      if (catResult.rows.length > 0) {
+        const categoryId = catResult.rows[0].id;
+        await pool.query(
+          `INSERT INTO recipes_categories (recipe_id, category_id)
+           VALUES ($1, $2);`,
+          [recipeId, categoryId]
+        );
+      }
+    }
+
+    res.json({ message: 'Recipe updated successfully', id: recipeId });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Failed updating recipe');
+  }
+});
+
+
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server running on port ${process.env.SERVER_PORT}`);
