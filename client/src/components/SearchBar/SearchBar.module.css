@@ -12,6 +12,7 @@
   background-color: var(--color-surface);
   color: var(--color-text);
   font-family: inherit;
+  font-size: 0.95rem;
 }
 
 .input:focus {
