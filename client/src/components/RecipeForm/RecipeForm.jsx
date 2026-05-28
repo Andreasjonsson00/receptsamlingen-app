@@ -4,20 +4,19 @@ import { useTranslation } from "react-i18next";
 import { CATEGORIES } from "../../constants/categories";
 import styles from "./RecipeForm.module.css";
 
-const RecipeForm = ({ onSubmit }) => {
+const RecipeForm = ({ onSubmit,initialData }) => {
   const { t } = useTranslation();
 
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    image: "",
-    ingredients: [],
-    instructions: [],
-    prep_time: null,
-    cook_time: null,
-    servings: null,
-    category: [],
-    language: "sv",
+ const [formData, setFormData] = useState({
+    title: initialData?.title || "",
+    description: initialData?.description || "",
+    image: initialData?.image || "",
+    ingredients: initialData?.ingredients || [],
+    instructions: initialData?.instructions || [],
+    prep_time: initialData?.prep_time || null,
+    cook_time: initialData?.cook_time || null,
+    servings: initialData?.servings || null,
+    category: initialData?.category || []
   });
 
   const handleChange = (e) => {

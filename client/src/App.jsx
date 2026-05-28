@@ -12,6 +12,7 @@ import RecipeListPage from "./pages/RecipeListPage/RecipeListPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import CreateRecipePage from "./pages/CreateRecipePage/CreateRecipePage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage/RecipeDetailsPage";
+import EditRecipePage from "./pages/EditRecipePage";
 
 const FAVORITES_STORAGE_KEY = "favorites";
 
@@ -86,6 +87,7 @@ function App() {
             />
             <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
             <Route path="/create" element={<CreateRecipePage />} />
+            <Route path='/recipes/:id/edit'element={<EditRecipePage/>}/>
           </Routes>
         </main>
 

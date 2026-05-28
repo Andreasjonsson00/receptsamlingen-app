@@ -32,7 +32,7 @@ export const add=async(data)=>{
 
 export const update = async (id, data) => {
   try {
-    const res = await apiClient.put(`/recipes/${id}`, data);
+    const res = await apiClient.put(`/recipes/${id}/edit`, data);
     return res.data;
   } catch (error) {
     throw new Error(`Failed to edit recipe: ${error.message}`, {cause: error});
