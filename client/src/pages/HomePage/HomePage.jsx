@@ -20,8 +20,8 @@ const HomePage = ({ favorites, toggleFavorite }) => {
     const fetchRandomRecipes = async () => {
       try {
         const data = await getAll();
-        const shuffled = [...data].sort(() => Math.random() - 0.5).slice(0, 6);
-        setRecipes(shuffled);
+    
+        setRecipes(data);
       } catch (err) {
         setError(err.message);
       } finally {
