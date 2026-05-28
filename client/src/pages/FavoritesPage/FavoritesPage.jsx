@@ -40,7 +40,7 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
         <h2>{t("pages.favoritesEmpty")}</h2>
       ) : (
         <>
-          <h2 className={styles["favorites-page__list-title"]}>
+          <h2 className={styles.favoritesPageListTitle}>
             {t("pages.favoritesTitle")}
           </h2>
 
