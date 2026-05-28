@@ -39,7 +39,14 @@ const RecipeDetailsPage = () => {
     }
   };
 
-  if (loading) return <p>{t("recipe.loading")}</p>;
+  if (error) return <p>{t("errors.fetchFailed")}</p>;
+  if (loading) {
+    return (
+      <div className="spinnerContainer">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
   if (error) return <p className={styles.error}>{t("errors.fetchFailed")}</p>;
   if (!recipe) return <p>{t("pages.recipeNotFound")}</p>;
 

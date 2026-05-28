@@ -20,9 +20,7 @@ const HomePage = ({ favorites, toggleFavorite }) => {
     const fetchRandomRecipes = async () => {
       try {
         const data = await getAll();
-        const shuffled = [...data]
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 6);
+        const shuffled = [...data].sort(() => Math.random() - 0.5).slice(0, 6);
         setRecipes(shuffled);
       } catch (err) {
         setError(err.message);
@@ -45,7 +43,13 @@ const HomePage = ({ favorites, toggleFavorite }) => {
   ];
 
   if (error) return <p>{t("errors.fetchFailed")}</p>;
-  if (loading) return <p>{t("loading")}</p>;
+  if (loading) {
+    return (
+      <div className="spinnerContainer">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.homePage}>
