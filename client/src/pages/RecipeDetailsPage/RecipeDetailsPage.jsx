@@ -59,35 +59,38 @@ const RecipeDetailsPage = () => {
         }
         className={styles.image}
       />
-      <p lang={contentLang}>{recipe.description}</p>
-
-      <p>
-        <strong>{t("recipe.ingredients")}:</strong>{" "}
-        <span lang={contentLang}>{recipe.ingredients.join(", ")}</span>
-      </p>
-      <p>
-        <strong>{t("recipe.instructions")}:</strong>{" "}
-        <span lang={contentLang}>{recipe.instructions?.join(". ")}.</span>
-      </p>
-
-      {recipe.category_name?.filter(Boolean).length > 0 && (
-        <p>
-          <strong>{t("form.categories")}:</strong>{" "}
-          {recipe.category_name
-            .filter(Boolean)
-            .map((c) => translateCategory(t, c))
-            .join(", ")}
+      <div>
+        <p className={styles.description} lang={contentLang}>
+          {recipe.description}
         </p>
-      )}
 
+        <p>
+          <strong>{t("recipe.ingredients")}:</strong>{" "}
+          <span lang={contentLang}>{recipe.ingredients.join(", ")}</span>
+        </p>
+        <p>
+          <strong>{t("recipe.instructions")}:</strong>{" "}
+          <span lang={contentLang}>{recipe.instructions?.join(". ")}.</span>
+        </p>
+
+        {recipe.category_name?.filter(Boolean).length > 0 && (
+          <p>
+            <strong>{t("form.categories")}:</strong>{" "}
+            {recipe.category_name
+              .filter(Boolean)
+              .map((c) => translateCategory(t, c))
+              .join(", ")}
+          </p>
+        )}
+      </div>
       <div className={styles.meta}>
         <p>
-          <strong>{t("recipe.prepTime")}:</strong>{" "}
-          {recipe.prep_time} {t("recipe.minutes")}
+          <strong>{t("recipe.prepTime")}:</strong> {recipe.prep_time}{" "}
+          {t("recipe.minutes")}
         </p>
         <p>
-          <strong>{t("recipe.cookTime")}:</strong>{" "}
-          {recipe.cook_time} {t("recipe.minutes")}
+          <strong>{t("recipe.cookTime")}:</strong> {recipe.cook_time}{" "}
+          {t("recipe.minutes")}
         </p>
         <p>
           <strong>{t("recipe.servings")}:</strong> {recipe.servings}
