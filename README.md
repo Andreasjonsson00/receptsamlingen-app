@@ -54,8 +54,21 @@
 #### globals (dev)
 
 ## Kvalitétstest
-### ESLint + minst 1 reviewer innan Merge 
+#### ESLint + minst 1 reviewer innan Merge 
 
 ## Instruktioner (Bash)
-### cd client > npm install > npm run dev
-### cd server > npm install > npm run dev
+#### cd client > npm install > npm run dev
+#### cd server > npm install > npm run dev
+
+
+## Huvud-ansvarsområden
+### Anass
+#### Databas-setup & api-funktioner
+### Andreas
+#### FavouritesPage & FavouriteButton-funktionalitet
+### Julia
+#### Grafisk profil, HomePage & Recipe-komponent
+### Dante
+#### Searchbar-implementering & funktionalitet
+### Harald
+#### Workflow-setup, FilterBar-implementering & funktionalitet
