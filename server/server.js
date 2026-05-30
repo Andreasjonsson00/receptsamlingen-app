@@ -178,6 +178,8 @@ app.put('/recipes/:id/edit', async (req, res) => {
 
 
 
-app.listen(process.env.SERVER_PORT, () => {
-  console.log(`Server running on port ${process.env.SERVER_PORT}`);
+const PORT = process.env.PORT || process.env.SERVER_PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
