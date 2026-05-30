@@ -5,7 +5,7 @@ const { Pool } = require("pg");
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://receptsamlingen.vercel.app"],
+    origin: ["http://localhost:5173", "https://receptsamlingen-app.vercel.app"],
   }),
 );
 app.use(express.json());
