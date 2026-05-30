@@ -142,4 +142,9 @@
   .horizontal .link {
     grid-template-columns: 1fr;
   }
+
+  .content,
+  .horizontal .content {
+    padding-left: var(--space-lg);
+  }
 }
